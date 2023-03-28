@@ -3,8 +3,8 @@ import React from "react";
 function ForgotPass() {
   return (
     <>
-      <form action="#" className="autorization">
-        <section>
+      <form action="#" >
+        <section className="autorization">
           <div className="autorization-continer container">
             <div className="autorization-block">
               <div className="autorization-block__title">Забули пароль?</div>

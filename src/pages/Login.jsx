@@ -1,11 +1,14 @@
 import React from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import Singup from "./Singup";
+import ForgotPass from "./ForgotPass";
 import "../style/auth.scss";
 
 function Login() {
   return (
     <>
-      <form action="#" className="autorization">
-        <section>
+      <form action="#">
+        <section className="autorization">
           <div className="autorization-continer container">
             <div className="autorization-block">
               <div className="autorization-block__title">Ласкаво просимо</div>
@@ -38,22 +41,26 @@ function Login() {
                 <p className="selection-entrance__text">
                   Не маю облікового запису
                 </p>
-                <a href="singup.html" className="selection-entrance__subtext">
+                <Link to="/singup" className="selection-entrance__subtext">
                   Зареєструватися
-                </a>
+                </Link>
               </div>
               <div className="selection-entrance__password">
-                <a
-                  href="./forgotpass.html"
+                <Link
+                  to="/login/forgotpass"
                   className="selection-entrance__subtext"
                 >
                   Забули пароль?
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         </section>
       </form>
+      <Routes>
+        <Route path="/singup" element={<Singup/>}/>
+        <Route path="/login/forgotpass" element={<ForgotPass/>}/>
+      </Routes>
     </>
   );
 }

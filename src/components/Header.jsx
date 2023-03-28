@@ -1,51 +1,53 @@
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import "./Header.scss";
 function Header() {
   return (
     <>
-      <div className="header">
-        <div className="wrapper">
-          <div className="header__wrapper">
-            <div className="header__logo">
-              <a className="logo" href="index.html">
+      <div className='header'>
+        <div className='wrapper'>
+          <div className='header__wrapper'>
+            <div className='header__logo'>
+              <Link className='logo' to='/'>
                 ITNews
-              </a>
+              </Link>
             </div>
-            <div className="header__nav">
-              <ul className="header__ul">
+            <div className='header__nav'>
+              <ul className='header__ul'>
                 <li>
-                  <a className="header__link" href="index.html">
+                  <Link className='header__link' to='/'>
                     Головна
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="header__link" href="news.html">
+                  <Link className='header__link' to=''>
                     Новини
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="header__link" href="blog.html">
+                  <Link className='header__link' to=''>
                     Блог
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="header__link" href="language.html">
+                  <Link className='header__link' to=''>
                     Мови
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
-            <div className="header__auth">
-              <a className="login auth" href="login.html">
+            <div className='header__auth'>
+              <Link className='login auth' to='/login'>
                 Login
-              </a>
-              <a className="sing_up auth" href="singup.html">
+              </Link>
+              <Link className='sing_up auth' to='/singup'>
                 Sing Up
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+      <Outlet />
     </>
   );
 }
