@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'OCR_OneCTT';
+    src: url('OCR_OneC.woff2') format('woff2'),
+        url('OCR_OneC.woff') format('woff'),
+        url('OCR_OneC.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

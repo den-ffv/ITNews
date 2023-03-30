@@ -1,0 +1,47 @@
+.post-card {
+  display: flex;
+  align-items: center;
+  max-width: 750px;
+  max-height: 272px;
+  border: 1px solid #000;
+  margin: 15px;
+  &__content {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__comments {
+  }
+
+  &__title {
+    margin: 20px 0px 15px 0px;
+  }
+  &__reactions {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #000;
+    margin: 65px 0px 0px 0px;
+    padding: 25px 0px 0px 0px;
+    gap: 20px;
+    div {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  &__like {
+    img {
+      width: 18px;
+      margin: -2px 0px 0px 10px;
+    }
+  }
+}
+.post-card__img {
+  max-width: 450px;
+  img {
+    max-height: 270px;
+  }
+}

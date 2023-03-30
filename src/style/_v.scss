@@ -1,13 +1,21 @@
 // color
-$color_base: #2d2d2d;
+$color_base: #333333;
 $color_two:  #1456b8;
 $color_activ: #1456b8;
 
 // size text
 
-$fz_base: 14px;
-$fz_titel: 19px;
+
+$fz_base: 15px;
+$fz_titel: 18px;
+$fz_bg-titel: 28px;
 
 // transition
 
 $tr_secont: 0.6s;
+
+// fonts
+
+$ff_base: 'OCR_OneCTT';
+$ff_titel:  'Druk Cyr';
+$ff_text: 'Frank Ruhl Libre', serif;
