@@ -12,7 +12,7 @@ function Menu({ items, active, setActive }) {
               <Link className='menu__link' to={i.href}>{i.value}</Link>
             </li>
           ))}
-          <div className='auth menu__auth'>
+          <div className='menu__auth'>
             <li className='menu__list' >
               <Link className='menu__link'  to='/login'>
                 Login

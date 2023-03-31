@@ -6,6 +6,7 @@
   position: fixed;
   width: 100%;
   background: #fff;
+  z-index: 100;
   &__wrapper {
     display: flex;
     align-items: center;
@@ -13,19 +14,22 @@
   }
 
   &__logo {
+    display: flex;
+    align-items:center;
   }
   &__nav {
   }
   &__ul {
     display: flex;
     align-items: center;
-    gap: 35px;
   }
   &__link {
     color: $color_base;
     transition: $tr_secont;
     padding: 10px 0;
     position: relative;
+    margin: 0px 20px 0px 20px;
+
 
     &:hover::before {
       content: "";
@@ -86,9 +90,10 @@
 .header__auth {
   display: flex;
   align-items: center;
-  gap: 20px;
+  
 }
 .auth {
+  margin: 0px 10px 0px 10px;
 }
 .login {
   color: $color_base;
@@ -117,5 +122,43 @@
     border: 1px solid#000000;
     color: $color_base;
     transition: $tr_secont;
+  }
+}
+
+@media(max-width: $lg){
+  .header {
+    &__nav {
+      display: none;
+    }
+  }
+  .block-burger-menu{
+    display: block;
+  }
+}
+@media(max-width: $sm){
+  .auth {
+    // display: none;
+  }
+  .header{
+   &__wrapper{
+    // display: block;
+   }
+  }
+  .login{
+    background: #000;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid#000;
+    border-radius: 5px;
+    color: #fff;
+    transition: $tr_secont;
+    &:hover {
+      background: none;
+      border: 1px solid#000000;
+      color: $color_base;
+      transition: $tr_secont;
+    }
+  }
+  .sing_up{
+    display: none;
   }
 }

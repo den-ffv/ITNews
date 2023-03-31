@@ -12,27 +12,26 @@ function Header() {
     { value: "Мови", href: "/leng" },
   ];
 
-
   return (
     <>
       <div className='header'>
         <div className='wrapper'>
           <div className='header__wrapper'>
-
-            {/* <button onClick={() => setMenuActive(!menuActive)}>open</button> */}
-
-          <nav>
-            <div className="burger-menu" onClick={() => setMenuActive(!menuActive)}>
-              <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
-              <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
-              <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
-            </div>
-          </nav>
-
             <div className='header__logo'>
-              <Link className='logo' to='/'>
-                ITNews
-              </Link>
+              <div>
+                <nav className="block-burger-menu">
+                  <div className="burger-menu" onClick={() => setMenuActive(!menuActive)}>
+                    <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
+                    <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
+                    <div className={!menuActive ? "burger-bar unclicked" : "burger-bar clicked"} ></div>
+                  </div>
+                </nav>
+              </div>
+              <div>
+                <Link className='logo' to='/'>
+                  ITNews
+                </Link>
+              </div>
             </div>
             <div className='header__nav'>
               <ul className='header__ul'>
@@ -43,30 +42,10 @@ function Header() {
                     </Link>
                   </li>
                 )}
-                {/* <li>
-                  <Link className='header__link' to='/'>
-                    Головна
-                  </Link>
-                </li>
-                <li>
-                  <Link className='header__link' to=''>
-                    Новини
-                  </Link>
-                </li>
-                <li>
-                  <Link className='header__link' to=''>
-                    Блог
-                  </Link>
-                </li>
-                <li>
-                  <Link className='header__link' to=''>
-                    Мови
-                  </Link>
-                </li> */}
               </ul>
             </div>
-            <div className='header__auth'>
-              <Link className='login auth' to='/login'>
+            <div className='header__auth' onClick={() => setMenuActive(false)}>
+              <Link className='login auth auth' to='/login'>
                 Login
               </Link>
               <Link className='sing_up auth' to='/singup'>

@@ -8,6 +8,7 @@ import Singup from "./pages/Singup";
 import ForgotPass from "./pages/ForgotPass";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import News from "./pages/News";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <main className='main '>
           <Routes>
               <Route path='/' element={<Home/>} />
+              <Route path='/news' element={<News/>} />
               <Route path='/login' element={<Login />} />
               <Route path='/singup' element={<Singup />} />
               <Route path="/login/forgotpass" element={<ForgotPass/>}/>

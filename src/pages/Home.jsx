@@ -1,16 +1,34 @@
 import React from "react";
-import Card from "../components/Card";
-import PostCard from "../components/PostCard";
-import "../style/pages.scss"
+import BigPost from "../components/BigPost";
+import MiniPost from "../components/MiniPost";
+
+
+import "../style/pages.scss";
 function Home() {
   return (
     <>
       <div className='home__wrapper wrapper'>
         <div className='carts'>
-          <Card/>
+          <div>
+            <MiniPost />
+            <MiniPost />
+          </div>
+          <BigPost />
         </div>
-        <div className="posts">
-          <PostCard/>
+        <div className="carts-wrapper">
+          <MiniPost/>
+          <MiniPost/>
+          <MiniPost/>
+          <MiniPost/>
+          <MiniPost/>
+          <MiniPost/>
+        </div>
+        
+        <div className='blok-posts'>
+          <div className='posts'>
+            
+          </div>
+          <div className='mini-posts'></div>
         </div>
       </div>
     </>
