@@ -15,7 +15,7 @@
 
   &__logo {
     display: flex;
-    align-items:center;
+    align-items: center;
   }
   &__nav {
   }
@@ -29,29 +29,25 @@
     padding: 10px 0;
     position: relative;
     margin: 0px 20px 0px 20px;
-
-
-    &:hover::before {
+    &::before {
       content: "";
       position: absolute;
       display: block;
-      animation: expand 0.3s ease-in-out;
       width: 100%;
       height: 2px;
-      background: $color_activ;
       bottom: 5px;
       left: 0;
+      background: $color_activ;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+    &:hover::before {
+      transform-origin: reght;
+      transform: scaleX(1);
     }
     &:hover {
       color: $color_activ;
-    }
-    @keyframes expand {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
     }
   }
 }
@@ -90,7 +86,6 @@
 .header__auth {
   display: flex;
   align-items: center;
-  
 }
 .auth {
   margin: 0px 10px 0px 10px;
@@ -124,27 +119,31 @@
     transition: $tr_secont;
   }
 }
-
-@media(max-width: $lg){
+.user {
+  img {
+    width: 37px;
+  }
+}
+@media (max-width: $lg) {
   .header {
     &__nav {
       display: none;
     }
   }
-  .block-burger-menu{
+  .block-burger-menu {
     display: block;
   }
 }
-@media(max-width: $sm){
+@media (max-width: $sm) {
   .auth {
     // display: none;
   }
-  .header{
-   &__wrapper{
-    // display: block;
-   }
+  .header {
+    &__wrapper {
+      // display: block;
+    }
   }
-  .login{
+  .login {
     background: #000;
     padding: 10px 15px 10px 15px;
     border: 1px solid#000;
@@ -158,7 +157,7 @@
       transition: $tr_secont;
     }
   }
-  .sing_up{
+  .sing_up {
     display: none;
   }
 }
