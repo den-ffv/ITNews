@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Profile from "./pages/Profile";
+import FullPostPage from "./pages/FullPostPage";
+import NotFoundPage from './pages/NotFoundPage';
+
 
 function App() {
   return (
@@ -19,11 +22,13 @@ function App() {
         <main className='main '>
           <Routes>
               <Route path='/' element={<Home/>} />
+              <Route path='//:fullpost/:id' element={<FullPostPage/>} />
               <Route path='/news' element={<News/>} />
               <Route path='/user' element={<Profile/>} />
               <Route path='/login' element={<Login />} />
               <Route path='/singup' element={<Singup />} />
               <Route path="/login/forgotpass" element={<ForgotPass/>}/>
+              <Route path="*" element={<NotFoundPage/>}/>
           </Routes>
         </main>
         <Footer />

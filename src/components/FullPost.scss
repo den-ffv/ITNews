@@ -1,0 +1,22 @@
+@import "../style/v";
+
+.full-post {
+
+  &__wrapper {
+    max-width: 930px;
+    margin: 0 auto;
+    border: 1px solid $color_base;
+    padding: 60px 90px 60px 90px;
+  }
+
+  // .full-post__content
+
+  &__content {
+  }
+  &__img{
+    width: 100%;
+  }
+  &__title{
+    font-size: $fz_bg-titel;
+  }
+}
