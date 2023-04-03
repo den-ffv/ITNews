@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./style/reset.scss";
 import "./App.scss";
@@ -12,9 +12,19 @@ import News from "./pages/News";
 import Profile from "./pages/Profile";
 import FullPostPage from "./pages/FullPostPage";
 import NotFoundPage from './pages/NotFoundPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 
 
 function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth)
+
+  useEffect(() => {
+    dispatch(fetchAuthMe())
+  }, [])
+
+
   return (
     <>
       <div className='App'>

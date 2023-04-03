@@ -4,6 +4,11 @@ import { Link, Outlet } from "react-router-dom";
 import "./Header.scss";
 import Menu from "./Menu";
 import profile from "../img/profile.png"
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectIsAuth } from "../redux/slices/auth";
+
+
+
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const items = [
@@ -13,7 +18,14 @@ function Header() {
     { value: "Мови", href: "/leng" },
   ];
 
-  const isAurtnUser = false;
+  const dispatch = useDispatch()
+  const isAuth = useSelector(selectIsAuth);
+  const onClickLogout = () => {
+    if (window.confirm('Ви справді хочете вийти?')) {
+      dispatch(logout())
+      window.localStorage.removeItem("token")
+    }
+  }
 
   return (
     <>
@@ -68,7 +80,7 @@ function Header() {
                 ))}
               </ul>
             </div>
-            {!isAurtnUser ? (
+            {!isAuth ? (
               <div
                 className='header__auth'
                 onClick={() => setMenuActive(false)}
@@ -83,9 +95,13 @@ function Header() {
             ) : (
               
               <div className='user'>
-                <Link to='/user'>
+                {/* <Link to='/user'>
                   <dir><img src={profile} alt="" /></dir>
-                </Link>
+                </Link> */}
+                {/* <Link className='sing_up auth' to='/'>
+                  
+                </Link> */}
+                <button onClick={onClickLogout} className="sing_up ">Вихід</button>
               </div>
             )}
           </div>
