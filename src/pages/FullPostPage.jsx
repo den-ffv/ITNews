@@ -3,17 +3,16 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../style/FullPostPage.scss";
 import FullPost from "../components/FullPost";
+import PreLoader from "../components/PreLoader";
 
 function FullPostPage() {
   const { id } = useParams();
   const [post, setPost] = useState();
   const url = `http://localhost:3001/posts/${id}`;
-  console.log(url);
   useEffect(() => {
     axios
       .get(url)
       .then((data) => {
-        console.log(data.data);
         setPost(data.data);
       })
       .catch((err) => {
@@ -22,18 +21,20 @@ function FullPostPage() {
   }, [id]);
 
   if (!post) {
-    return <div>Loading...</div>;
+    return <div className="loading-post">Loading...</div>;
   }
-
   return (
     <>
       {post && (
+          
         <FullPost
+          index={post.index}
           title={post.title}
           text={post.text}
           img={post.imgeUrl}
           tag={post.tags}
           postData={post.createdAt}
+          userName={post.user.fullName}
         />
       )}
     </>

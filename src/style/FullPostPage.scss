@@ -1,5 +1,11 @@
 @import "./v";
-
+.loading-post{
+  font-size: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 150px 0px 0px 0px;
+}
 .full-post {
 
   &__wrapper {

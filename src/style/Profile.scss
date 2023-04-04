@@ -1,0 +1,44 @@
+@import "./v";
+.profile {
+  margin: 70px 0px 0px 0px;
+  &__title{
+    font-size: $fz_bg-titel;
+    color: $color_base;
+    margin: 0px 0px 20px 0px;
+    text-align: center;
+  }
+  &__header{
+    text-align: center;
+    padding: 0px 0px 50px 0px;
+  }
+  &__warpper {
+  }
+  &__user {
+    background: $color_base;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    min-height: 230px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 30px ;
+  }
+  &__user-img {
+    max-width: 150px;
+    margin: 0 50px 0 0 ;
+  }
+  &__user-name {
+    color: #fff;
+    font-size: $fz_titel;
+  }
+}
+.wrapper {
+}
+.exid-btn {
+  background: none;
+  text-decoration: underline;
+  font-size: $fz_base;
+}
+

@@ -7,8 +7,7 @@ import profile from "../img/profile.png"
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/auth";
 
-
-
+import logo from "../img/logo.svg"
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const items = [
@@ -18,14 +17,14 @@ function Header() {
     { value: "Мови", href: "/leng" },
   ];
 
-  const dispatch = useDispatch()
   const isAuth = useSelector(selectIsAuth);
-  const onClickLogout = () => {
-    if (window.confirm('Ви справді хочете вийти?')) {
-      dispatch(logout())
-      window.localStorage.removeItem("token")
-    }
-  }
+  // const dispatch = useDispatch()
+  // const onClickLogout = () => {
+  //   if (window.confirm('Ви справді хочете вийти?')) {
+  //     dispatch(logout())
+  //     window.localStorage.removeItem("token")
+  //   }
+  // }
 
   return (
     <>
@@ -65,7 +64,8 @@ function Header() {
               </div>
               <div>
                 <Link className='logo' to='/'>
-                  ITNews
+                  <img src={logo} alt="" />
+                Uncatch
                 </Link>
               </div>
             </div>
@@ -95,13 +95,11 @@ function Header() {
             ) : (
               
               <div className='user'>
-                {/* <Link to='/user'>
-                  <dir><img src={profile} alt="" /></dir>
-                </Link> */}
-                {/* <Link className='sing_up auth' to='/'>
-                  
-                </Link> */}
-                <button onClick={onClickLogout} className="sing_up ">Вихід</button>
+                <Link to='/user'>
+                  <dir><img src={profile} alt="user-icon" /></dir>
+                </Link>
+                
+                {/* <button onClick={onClickLogout} className="sing_up ">Вихід</button> */}
               </div>
             )}
           </div>

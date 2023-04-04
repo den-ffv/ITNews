@@ -82,6 +82,9 @@
 .logo {
   font-size: 30px;
   color: $color_base;
+  img{
+    width: 35px;
+  }
 }
 .header__auth {
   display: flex;

@@ -57,7 +57,7 @@
   display:flex;
   flex-direction: column;
   padding: 0px 0px 20px 0px;
-  border-bottom: 1px solid $color_base;
+  border-top: 1px solid $color_base;
 }
 @media(max-width: $lg){
   .block-burger-menu{
