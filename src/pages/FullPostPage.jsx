@@ -1,42 +1,56 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 import "../style/FullPostPage.scss";
 import FullPost from "../components/FullPost";
 import PreLoader from "../components/PreLoader";
 
 function FullPostPage() {
+  // const { id } = useParams();
+  // const [post, setPost] = useState();
+  // const url = `http://localhost:3001/posts/${id}`;
+  // useEffect(() => {
+  //   axios
+  //     .get(url)
+  //     .then((data) => {
+  //       setPost(data.data);
+  //     })
+  //     .catch((err) => {
+  //       console, log(err);
+  //     });
+  // }, [id]);
+  const [data, setData] = useState();
+  const [isLoading, setLoading] = useState(true);
   const { id } = useParams();
-  const [post, setPost] = useState();
-  const url = `http://localhost:3001/posts/${id}`;
   useEffect(() => {
     axios
-      .get(url)
-      .then((data) => {
-        setPost(data.data);
+      .get(`/posts/${id}`)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
       })
       .catch((err) => {
-        console, log(err);
+        console.log(err);
       });
   }, [id]);
 
-  if (!post) {
-    return <div className="loading-post">Loading...</div>;
+  console.log(data);
+  if (isLoading) {
+    return <PreLoader />;
   }
   return (
     <>
-      {post && (
-          
+    {data && 
         <FullPost
-          index={post.index}
-          title={post.title}
-          text={post.text}
-          img={post.imgeUrl}
-          tag={post.tags}
-          postData={post.createdAt}
-          userName={post.user.fullName}
-        />
-      )}
+        index={data.index}
+        title={data.title}
+        text={data.text}
+        img={data.imgeUrl}
+        tag={data.tags}
+        postData={data.createdAt}
+        userName={data.user.fullName}
+      />
+    }
     </>
   );
 }

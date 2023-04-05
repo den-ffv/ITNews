@@ -1,0 +1,18 @@
+@import "../style/v";
+.pre-loader {
+  position: fixed;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background: #ffffff;
+  z-index: 200;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  &__content {
+    
+    color: $color_base;
+    font-size: 100px;
+  }
+}
