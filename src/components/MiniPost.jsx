@@ -4,8 +4,8 @@ import "./MiniPost.scss";
 import { getUserDate } from "../utils/createDate";
 
 function MiniPost({ idPost, title, text, img, tag, postDate, user }) {
-  const truncateLengthText = 180;
-  const truncatedText = text.length > truncateLengthText ? text.substring(0, truncateLengthText) + "...": text;
+  // const truncateLengthText = 180;
+  // const truncatedText = text.length > truncateLengthText ? text.substring(0, truncateLengthText) + "...": text;
   const truncateLengthTitle = 120; 
   const truncatedTitle = title.length > truncateLengthTitle ? title.substring(0, truncateLengthTitle) + "...": title;
 
@@ -21,7 +21,7 @@ function MiniPost({ idPost, title, text, img, tag, postDate, user }) {
             <p className='mini-post__title'>
               {truncatedTitle}
             </p>
-            <p className='mini-post__text text'>{truncatedText}</p>
+            <p className='mini-post__text text'>{/*truncatedText*/ text}</p>
             <div className='data-post'>
               <p className='post-data mini-text'>{getUserDate(postDate)}</p>
               <p className='author-post mini-text'>{user}</p>

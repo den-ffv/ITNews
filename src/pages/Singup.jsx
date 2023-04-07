@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { selectIsAuth, fetchRegister } from "../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import PreLoader from '../components/PreLoader';
 
 function Singup() {
   const isAuth = useSelector(selectIsAuth);
@@ -22,7 +23,12 @@ function Singup() {
     mode: "onChange",
   });
   if (isAuth) {
-    return <Navigate to='/' />;
+    return (
+      <>
+        <PreLoader text={"Uncatch"} />
+        <Navigate to='/' />
+      </>
+    );
   }
 
   const onSubmit = async (values) => {
@@ -57,7 +63,9 @@ function Singup() {
                     {...register("fullName", { required: "Укажіть і'мя" })}
                   />
                   <span className='autorization__box-text'></span>
-                  <div className='error-message'>{errors.fullName?.message}</div>
+                  <div className='error-message'>
+                    {errors.fullName?.message}
+                  </div>
                 </div>
                 <div className='autorization-box'>
                   <input
@@ -84,7 +92,9 @@ function Singup() {
                     {...register("password", { required: "Укажіть пароль" })}
                   />
                   <span className='autorization__box-text'></span>
-                  <div className='error-message'>{errors.password?.message}</div>
+                  <div className='error-message'>
+                    {errors.password?.message}
+                  </div>
                 </div>
                 <button className='button-autorization button-autorization__margin'>
                   увійти

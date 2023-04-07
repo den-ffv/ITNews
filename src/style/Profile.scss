@@ -15,10 +15,8 @@
   }
   &__user {
     background: $color_base;
-    display: flex;
-    justify-content: left;
-    align-items:center;
-    min-height: 230px;
+    padding: 20px 0px 20px 0px;
+    // min-height: 230px;
   }
   &__content {
     display: flex;

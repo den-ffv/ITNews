@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.getElementById("root")).render(
   // робить два запита
   <>
-   <React.StrictMode>
+   {/* <React.StrictMode> */}
     <BrowserRouter>
 {/* ---------- */}
       <Provider store={store} >
@@ -19,6 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </Provider>
 {/* ---------- */}
     </BrowserRouter>
-   </React.StrictMode>
+   {/* </React.StrictMode> */}
   </>
 );

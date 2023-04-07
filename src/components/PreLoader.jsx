@@ -1,11 +1,12 @@
 import React from "react";
-import "./PreLoader.scss"
-function PreLoader() {
+import "./PreLoader.scss";
+function PreLoader({text}) {
   return (
     <>
       <div className='pre-loader'>
         <div className='pre-loader__content'>
-          <p>Uncatch</p>
+
+            <p>{text}</p>
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchAuth, selectIsAuth } from "../redux/slices/auth";
+import PreLoader from "../components/PreLoader";
 function Login() {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
@@ -35,7 +36,12 @@ function Login() {
     }
   };
   if (isAuth) {
-    return <Navigate to='/' />;
+    return (
+      <>
+        <PreLoader text={'Uncatch'}/>
+        <Navigate to='/' />
+      </>
+     )
   }
 
   return (

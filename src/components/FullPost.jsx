@@ -10,7 +10,7 @@ function FullPost({ title, text, img, tag, postData, userName }) {
         <h1 className='full-post__title title'>{title}</h1>
         <img className='full-post__img' src={img} alt='' />
 
-        <p className='text'>{text}</p>
+        <div className='text'>{text}</div>
         <p>{userName}</p>
       </div>
     </>

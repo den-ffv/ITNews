@@ -26,12 +26,19 @@ function Menu({ items, active, setActive }) {
             </li>
           ))}
           <div className='menu__auth'>
-            {(isAuth) ? (
-              <li className='menu__list'>
-                <Link onClick={onClickLogout} className='menu__link'>
-                  Вихiд
-                </Link>
-              </li>
+            {isAuth ? (
+              <div>
+                <li className='menu__list'>
+                  <Link className='menu__link' to='/user'>
+                    Мiй акаунт
+                  </Link>
+                </li>
+                <li className='menu__list'>
+                  <Link onClick={onClickLogout} className='menu__link'>
+                    Вихiд
+                  </Link>
+                </li>
+              </div>
             ) : (
               <div>
                 <li className='menu__list'>
