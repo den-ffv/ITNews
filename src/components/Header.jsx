@@ -85,7 +85,7 @@ function Header() {
                 className='header__auth'
                 onClick={() => setMenuActive(false)}
               >
-                <Link className='login auth auth' to='/login'>
+                <Link className='login auth' to='/login'>
                   Login
                 </Link>
                 <Link className='sing_up auth' to='/singup'>

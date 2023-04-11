@@ -14,6 +14,7 @@ import FullPostPage from "./pages/FullPostPage";
 import NotFoundPage from './pages/NotFoundPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import AddPost from './pages/AddPost';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path='//:fullpost/:id' element={<FullPostPage/>} />
               <Route path='/news' element={<News/>} />
               <Route path='/user' element={<Profile/>} />
+              <Route path='/add-post' element={<AddPost/>} />
               <Route path='/login' element={<Login />} />
               <Route path='/singup' element={<Singup />} />
               <Route path="/login/forgotpass" element={<ForgotPass/>}/>

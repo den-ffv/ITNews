@@ -19,8 +19,8 @@ function Login() {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      email: "qatext@email.com",
-      password: "12345zxc",
+      email: "bo15fff@gmail.com",
+      password: "123456789",
     },
     mode: "onChange",
   });

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/auth";
 import { fetchAuthMe } from "../redux/slices/auth";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import PreLoader from "../components/PreLoader";
 
 function Profile() {
@@ -25,7 +25,7 @@ function Profile() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   const dispatch = useDispatch();
@@ -36,6 +36,9 @@ function Profile() {
       histori("/");
     }
   };
+  if (!isAuth) {
+    return histori("/");
+  }
   if (window.localStorage.getItem("token") && isLoading) {
     return <PreLoader text={"Uncatch"} />;
   }
@@ -49,7 +52,7 @@ function Profile() {
             <button onClick={onClickLogout} className='exid-btn'>
               Вихiд
             </button>
-            {isAdmin ? <button>add post</button> : ""}
+            {isAdmin ? <Link to={"/add-post"}>add post</Link> : ""}
           </div>
           <div className='profile__user'>
             <div className='wrapper'>

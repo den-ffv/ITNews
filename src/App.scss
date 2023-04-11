@@ -34,9 +34,9 @@ body {
 .title{
   font-family: $ff_titel;
   font-size: $fz_titel;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   font-weight: 500;
-  word-spacing: 3px;
+  word-spacing: 6px;
   text-transform: uppercase;
   &:hover{
   text-decoration: underline;
