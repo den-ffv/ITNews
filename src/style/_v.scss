@@ -9,6 +9,9 @@ $fz_base: 15px;
 $fz_titel: 24px;
 $fz_bg-titel: 30px;
 $fz_mini-text:13px;
+@media(max-width: 420px){ 
+  $fz_titel: 18px;
+}
 
 
 // transition

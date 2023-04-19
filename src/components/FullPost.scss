@@ -4,19 +4,27 @@
 
   &__wrapper {
     max-width: 930px;
-    margin: 60px auto 0 auto;
+    margin: 0px auto 0 auto;
     border: 1px solid $color_base;
     padding: 60px 90px 60px 90px;
+    @media(max-width: 860px){
+      padding: 30px 40px 30px 40px;
+    }
+    @media(max-width: 420px){
+      padding: 30px 20px 30px 20px;
+    }
   }
-
-  // .full-post__content
-
   &__content {
   }
   &__img{
     width: 100%;
+    margin: 0px 0px 30px 0px;
   }
   &__title{
     font-size: $fz_bg-titel;
+    margin: 30px 0px 20px 0px;
+    &:hover{
+      text-decoration: none;
+    }
   }
 }

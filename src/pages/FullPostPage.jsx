@@ -4,6 +4,7 @@ import axios from "../axios";
 import "../style/FullPostPage.scss";
 import FullPost from "../components/FullPost";
 import PreLoader from "../components/PreLoader";
+import ReactMarkdown from 'react-markdown'
 
 function FullPostPage() {
   const [data, setData] = useState();
@@ -35,8 +36,8 @@ function FullPostPage() {
         <FullPost
           index={data.index}
           title={data.title}
-          text={data.text}
-          img={data.imgeUrl}
+          text={<ReactMarkdown children={data.text}/>}
+          img={`http://localhost:3001${data.imgeUrl}`}
           tag={data.tags}
           postData={data.createdAt}
           userName={data.user.fullName}

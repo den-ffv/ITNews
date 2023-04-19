@@ -30,7 +30,7 @@ function Home() {
           idPost={obj._id}
           title={obj.title}
           // text={obj.text}
-          img={obj.imgeUrl}
+          img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ''}
           tag={obj.tags}
           postDate={obj.createdAt}
           user={obj.user.fullName}
