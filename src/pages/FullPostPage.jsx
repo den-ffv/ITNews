@@ -34,10 +34,11 @@ function FullPostPage() {
         <PreLoader text={"Uncatch"} />
       ) : (
         <FullPost
+          idPost={data._id}
           index={data.index}
           title={data.title}
           text={<ReactMarkdown children={data.text}/>}
-          img={`http://localhost:3001${data.imgeUrl}`}
+          img ={data.imgeUrl ? `http://localhost:3001${data.imgeUrl}` : ""}
           tag={data.tags}
           postData={data.createdAt}
           userName={data.user.fullName}

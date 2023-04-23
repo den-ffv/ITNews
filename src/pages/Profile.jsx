@@ -14,7 +14,7 @@ function Profile() {
   const [isLoading, setLoading] = useState(true);
   const isAuth = useSelector(selectIsAuth);
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
-  const isAdmin = user && user.role;
+  const isAdmin = user && user.role === 'admin';
 
   useEffect(() => {
     if (isAdmin) {

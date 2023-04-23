@@ -2,7 +2,8 @@ import React from "react";
 import "../style/AddPost.scss";
 import { useSelector } from "react-redux";
 import { selectIsAuth } from "../redux/slices/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchAuthMe } from "../redux/slices/auth";
 import axios from "../axios";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
@@ -10,15 +11,19 @@ import "easymde/dist/easymde.min.css";
 function AddPost() {
   const isAuth = useSelector(selectIsAuth);
   const navigate = useNavigate();
-  console.log(isAuth);
+  const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
+  const isAdmin = user && user.role === 'admin';
+  console.log(isAdmin)
+  const id = useParams()
+  const isEditing = Boolean(id)
 
   const [isLoading, setIsLoading] = React.useState(false);
-  // const imgeUrl = "";
   const [text, setText] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [tags, setTags] = React.useState("");
   const [imgeUrl, setImgeUrl] = React.useState("");
   const inputFileRef = React.useRef(null)
+
 
   const handleChangeFile = async (event) => {
     try {
@@ -52,9 +57,13 @@ function AddPost() {
         tags: tags.slice(","),
         text,
       }
-      const { data } = await axios.post("/posts", fields);
-      const id = data._id
-      navigate(`/posts/${id}`)
+      const { data } = isEditing 
+      ? await axios.patch(`/posts/${id.id}`, fields) 
+      : await axios.post("/posts", fields);
+
+      const _id = isEditing ? id : data._id
+      console.log(id)
+      navigate(`/posts/${_id.id}`)
     } catch (err) {
       console.warn(err)
       alert("Помилка при завантаженні файла!")
@@ -73,31 +82,31 @@ function AddPost() {
         enabled: true,
         delay: 1000,
       },
-      toolbar: [
-        "bold",
-        "italic",
-        "heading",
-        "|",
-        "quote",
-        "ordered-list",
-        "unordered-list",
-        "|",
-        "link",
-        "code",
-        "image",
-        "|",
-        "upload-image",
-      ],
+      toolbar: [ "bold", "italic", "heading", "|", "quote", "ordered-list", "unordered-list", "|", "link", "code", "image", "|", "upload-image",],
     }),
     []
   );
 
   React.useEffect(() => {
-    if (!window.localStorage.getItem("token") && !isAuth) {
-      console.log("text test if");
-      navigate("/");
+    if (!window.localStorage.getItem("token") && !isAuth && isAdmin) {
+      return navigate("/");
     }
   }, []); 
+
+  React.useEffect( () => {
+    if(id){
+      console.log(id.id)
+      axios.get(`/posts/${id.id}`).then(({data}) => {
+        setTitle(data.title)
+        setText(data.text)
+        setTags(data.tags)
+        setImgeUrl(data.imgeUrl)
+      })
+    }
+  }, [])
+
+
+
   return (
     <>
       <div className='wrapper warpper-add-post'>
@@ -141,7 +150,7 @@ function AddPost() {
         />
         <div className='button-sabmit'>
           <button onClick={onSubmit} className='add-post-btn' type='submit'>
-            Опублiкувати
+            {isEditing ? ("Зберегти") : ("Опублiкувати")}
           </button>
           <a href='/'>
             <button className='add-post-btn'>Відміна</button>
