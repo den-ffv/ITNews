@@ -1,5 +1,18 @@
 @import "../style/_v";
-
+.main-titel{
+  margin: 50px 0px 0px 0px;
+  font-size: 70px;
+  display: block;
+}
+.home__wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cards__wrapper{
+  display: flex;
+}
 .carts {
   margin: 50px 0px 20px 0px;
 }

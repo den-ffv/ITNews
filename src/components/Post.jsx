@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Post.scss";
-import greec from "../img/nodejs.png";
-function Post() {
+import { getUserDate } from '../utils/createDate';
+function Post({ idPost, title, text, img, tag, postDate, user }) {
   return (
     <>
       <div className='post-card'>
         <div className='post-card__img'>
-          <img src={greec} alt='' />
+          <img src={img} alt='' />
         </div>
         <div className='post-card__content'>
-          <Link className='card__link' to='/fullpost'>
-            <p className='post-tag mini-text'>nodejs</p>
+          <Link className='card__link' to={`/fullpost/${idPost}`}>
+            <p className='post-tag mini-text'>{tag}</p>
             <h2 className='post-card__title title'>
-              Переваги NodeJs в програмування серверної частини
+              {title}
             </h2>
             <div>
-              <p className='author-post mini-text'>Oliver</p>
+              <p className='author-post mini-text'>{getUserDate(postDate)}</p>
             </div>
           </Link>
         </div>

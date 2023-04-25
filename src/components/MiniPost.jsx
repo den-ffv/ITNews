@@ -21,10 +21,10 @@ function MiniPost({ idPost, title, text, img, tag, postDate, user }) {
             <p className='mini-post__title'>
               {truncatedTitle}
             </p>
-            <p className='mini-post__text text'>{/*truncatedText*/ text}</p>
+            {/* <p className='mini-post__text text'>{truncatedText text}</p> */}
             <div className='data-post'>
               <p className='post-data mini-text'>{getUserDate(postDate)}</p>
-              <p className='author-post mini-text'>{user}</p>
+              <p className='author-post mini-text'>{}</p>
             </div>
           </div>
         </Link>

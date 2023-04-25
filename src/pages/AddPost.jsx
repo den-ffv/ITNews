@@ -13,11 +13,11 @@ function AddPost() {
   const navigate = useNavigate();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
   const isAdmin = user && user.role === 'admin';
-  console.log(isAdmin)
-  const id = useParams()
-  const isEditing = Boolean(id)
 
+  const {id} = useParams()
+  const isEditing = Boolean(id);
   const [isLoading, setIsLoading] = React.useState(false);
+
   const [text, setText] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [tags, setTags] = React.useState("");
@@ -37,11 +37,10 @@ function AddPost() {
       console.warn(err);
       alert("Помилка при завантаженні файла!")
     }
-    console.log(event.target.files)
   };
 
-  const onClickRemoveImage = () => {
-    setImgeUrl("")
+  const onClickRemoveImage = async () => {
+    setImgeUrl('');
   };
 
   const onChange = React.useCallback((value) => {
@@ -57,13 +56,13 @@ function AddPost() {
         tags: tags.slice(","),
         text,
       }
-      const { data } = isEditing 
-      ? await axios.patch(`/posts/${id.id}`, fields) 
+      
+      const { data } = (isEditing === true) 
+      ? await axios.patch(`/posts/${id}`, fields) 
       : await axios.post("/posts", fields);
 
-      const _id = isEditing ? id : data._id
-      console.log(id)
-      navigate(`/posts/${_id.id}`)
+      const _id = (isEditing) ? id : data._id
+      navigate(`/posts/${_id}`)
     } catch (err) {
       console.warn(err)
       alert("Помилка при завантаженні файла!")
@@ -93,17 +92,17 @@ function AddPost() {
     }
   }, []); 
 
+
   React.useEffect( () => {
-    if(id){
-      console.log(id.id)
-      axios.get(`/posts/${id.id}`).then(({data}) => {
+    if(id && isEditing){
+      axios.get(`/posts/${id}`).then(({data}) => {
         setTitle(data.title)
         setText(data.text)
         setTags(data.tags)
         setImgeUrl(data.imgeUrl)
       })
     }
-  }, [])
+  }, [id ,isEditing])
 
 
 
@@ -150,7 +149,7 @@ function AddPost() {
         />
         <div className='button-sabmit'>
           <button onClick={onSubmit} className='add-post-btn' type='submit'>
-            {isEditing ? ("Зберегти") : ("Опублiкувати")}
+            {(isEditing) ? ("Зберегти") : ("Опублiкувати")}
           </button>
           <a href='/'>
             <button className='add-post-btn'>Відміна</button>
