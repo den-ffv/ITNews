@@ -32,14 +32,14 @@
 
 /*-------------------------------button-autorization----------------------------------------*/
 .button-autorization {
-  background: #000000;
+  background: $color_two;
   border-radius: 4.8px;
   width: 100%;
   padding: 20px 0;
-  font-size: 14px;
+  font-size: $fz_base;
   color: #fff;
   padding: 15px 0;
-  border: 1px solid #000000;
+  border: 1px solid $color_two;
   text-transform: uppercase;
   transition: $tr_secont;
 }
@@ -49,9 +49,8 @@
 }
 
 .button-autorization:hover {
-  border: 1px solid rgb(102, 98, 98);
-  background: #ffffff;
-  color: #000;
+  background: none;
+  color: $color_base;
   transition: $tr_secont;
 }
 

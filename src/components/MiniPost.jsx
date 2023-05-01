@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./MiniPost.scss";
 import { getUserDate } from "../utils/createDate";
+import {minutRead} from "../utils/minutRead"
 
 function MiniPost({ idPost, title, text, img, tag, postDate, user }) {
   // const truncateLengthText = 180;
@@ -24,7 +25,7 @@ function MiniPost({ idPost, title, text, img, tag, postDate, user }) {
             {/* <p className='mini-post__text text'>{truncatedText text}</p> */}
             <div className='data-post'>
               <p className='post-data mini-text'>{getUserDate(postDate)}</p>
-              <p className='author-post mini-text'>{}</p>
+              <p className='author-post mini-text'>{minutRead(text)}</p>
             </div>
           </div>
         </Link>

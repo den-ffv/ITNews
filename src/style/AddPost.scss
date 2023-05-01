@@ -4,6 +4,9 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.add-img-post{
+  width: 100%;
+}
 .input-title-tags{
   margin: 40px 0px 40px 0px;
   display: flex;
@@ -40,21 +43,6 @@
   i{
     padding:5px 0px;
 
-  }
-}
-.add-post-btn{
-  background: #000;
-  padding: 10px 15px 10px 15px;
-  border: 1px solid#000;
-  border-radius: 5px;
-  color: #fff;
-  transition: $tr_secont;
-  &:hover {
-    background: #00000067;
-    border: 1px solid#000000;
-    color: $color_base;
-    transition: $tr_secont;
-    transform: translateY(-2px);
   }
 }
 .button-sabmit{

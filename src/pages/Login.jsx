@@ -78,7 +78,7 @@ function Login() {
                     {errors.password?.message}
                   </div>
                 </div>
-                <button className='button-autorization button-autorization__margin'>
+                <button className='button-autorization button-autorization__margin button'>
                   увійти
                 </button>
               </form>

@@ -1,18 +1,13 @@
 @import "../style/v";
 .mini-post{
-  max-width: 300px;
+  max-width: 270px;
   border: 1px solid $color_base;
   margin: 0px 10px 20px 10px; 
   transition: $tr_secont;
   a{
     color: $color_base;
   }
-  // &:hover{
-  //   box-shadow: 0px 7px 64px rgba(80, 77, 92, 0.3); 
-  //   transition: $tr_secont;
-  // }
    &__img {
-    // max-height: 420px;
     max-width: 100%;
     display: flex;
     justify-content: center;
@@ -23,7 +18,52 @@
     }
   }
   &__content {
-    margin: 10px 0px 10px 0px;
+    padding: 10px 20px;
+  }
+  &__title{
+    font-family: $ff_titel;
+    font-size: $fz_titel;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    word-spacing: 2px;
+    margin: 10px 0px 20px 0px;
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
+  &__text{
+    padding: 0px 0px 45px 0px;
+    @media(max-width: 470px){
+      display: none;
+    }
+  }
+}
+.data-post{
+  // display: flex;
+  .post-data{
+    padding: 0px 0px 12px 0px;
+  }
+}
+@media(max-width: 950px){
+  .mini-post{
+  max-width: 730px;
+  margin: 0px 10px 20px 10px; 
+  a{
+    color: $color_base;
+  }
+   &__img {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__content {
     padding: 10px 20px;
   }
   &__title{
@@ -49,7 +89,7 @@
 .data-post{
   display: flex;
   .post-data{
-    border-right: 1px solid $color_base;
-    padding: 0px 20px 0px 0px;
+    padding: 0px 0px 0px 0px;
   }
+}
 }

@@ -2,12 +2,13 @@
 
 body {
   font-family: $ff_base;
-  font-weight: 500;
+  font-weight: 600;
   font-size: $fz_base;
   color: $color_base;
+  // background: #f3f3f3;
 }
 .wrapper {
-  max-width: 1200px;
+  max-width: 1300px;
   padding: 0px 10px 0px 10px;
   margin: 0 auto;
 }
@@ -34,18 +35,30 @@ body {
 .title{
   font-family: $ff_titel;
   font-size: $fz_titel;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   font-weight: 500;
-  word-spacing: 6px;
+  word-spacing: 3px;
   text-transform: uppercase;
   &:hover{
   text-decoration: underline;
 }
 }
-
-
 .text{
   font-family: $ff_text;
   font-size: $fz_base;
+  
+}
 
+.button{
+  background: $color_base;
+  padding: 10px 15px 10px 15px;
+  border: 1px solid $color_base;
+  border-radius: 5px;
+  color: #fff;
+  transition: $tr_secont;
+  &:hover {
+    background: none;
+    color: $color_base;
+    transition: $tr_secont;
+  }
 }

@@ -88,7 +88,7 @@ function Header() {
                 <Link className='login auth' to='/login'>
                   Login
                 </Link>
-                <Link className='sing_up auth' to='/singup'>
+                <Link className='sing_up auth button' to='/singup'>
                   Sing Up
                 </Link>
               </div>

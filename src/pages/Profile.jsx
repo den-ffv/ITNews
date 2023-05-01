@@ -40,7 +40,7 @@ function Profile() {
     return histori("/");
   }
   if (window.localStorage.getItem("token") && isLoading) {
-    return <PreLoader text={"Uncatch"} />;
+    return <PreLoader/>;
   }
 
   return (

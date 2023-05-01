@@ -108,20 +108,20 @@
     border-radius: 5px;
   }
 }
-.sing_up {
-  background: #000;
-  padding: 10px 15px 10px 15px;
-  border: 1px solid#000;
-  border-radius: 5px;
-  color: #fff;
-  transition: $tr_secont;
-  &:hover {
-    background: none;
-    border: 1px solid#000000;
-    color: $color_base;
-    transition: $tr_secont;
-  }
-}
+// .sing_up {
+//   background: $color_two;
+//   padding: 10px 15px 10px 15px;
+//   border: 1px solid $color_two;
+//   border-radius: 5px;
+//   color: #fff;
+//   transition: $tr_secont;
+//   &:hover {
+//     background: none;
+
+//     color: $color_base;
+//     transition: $tr_secont;
+//   }
+// }
 .user {
   img {
     width: 37px;

@@ -6,7 +6,7 @@ function PreLoader() {
       <div className='pre-loader'>
         <div className='pre-loader__content'>
 
-            <p>Uncatch</p>
+            <p>{`<Uncatch>`}</p>
         </div>
       </div>
     </>

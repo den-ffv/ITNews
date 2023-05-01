@@ -7,6 +7,7 @@ import { fetchAuthMe } from "../redux/slices/auth";
 import axios from "../axios";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import NotFoundPage from './NotFoundPage';
 
 function AddPost() {
   const isAuth = useSelector(selectIsAuth);
@@ -31,7 +32,6 @@ function AddPost() {
       const file = event.target.files[0]
       formData.append("image", file)
       const {data} = await axios.post("/upload", formData)
-      console.log(data)
       setImgeUrl(data.url)
     } catch (err) {
       console.warn(err);
@@ -56,12 +56,11 @@ function AddPost() {
         tags: tags.slice(","),
         text,
       }
-      
+    
       const { data } = (isEditing === true) 
       ? await axios.patch(`/posts/${id}`, fields) 
       : await axios.post("/posts", fields);
-
-      const _id = (isEditing) ? id : data._id
+      const _id = isEditing ? id : data._id
       navigate(`/posts/${_id}`)
     } catch (err) {
       console.warn(err)
@@ -86,11 +85,11 @@ function AddPost() {
     []
   );
 
-  React.useEffect(() => {
-    if (!window.localStorage.getItem("token") && !isAuth && isAdmin) {
-      return navigate("/");
-    }
-  }, []); 
+  // React.useEffect(() => {
+  //   if (!window.localStorage.getItem("token") && !isAuth && isAdmin) {
+  //     return navigate("/");
+  //   }
+  // }, []); 
 
 
   React.useEffect( () => {
@@ -104,12 +103,20 @@ function AddPost() {
     }
   }, [id ,isEditing])
 
-
+  if (!window.localStorage.getItem("token") && !isAdmin) {
+    return  <NotFoundPage/>
+      {/* navigate("/"); */}
+  
+   
+  }
+  if (window.localStorage.getItem("token") && isLoading) {
+    return <PreLoader />;
+  }
 
   return (
     <>
       <div className='wrapper warpper-add-post'>
-        <button onClick={() => inputFileRef.current.click()} className='add-post-btn' variant='outlined' size='large'>
+        <button onClick={() => inputFileRef.current.click()} className='button' variant='outlined' size='large'>
           Завантажити превью
         </button>
         <input ref={inputFileRef} type='file' onChange={handleChangeFile} hidden />
@@ -118,7 +125,7 @@ function AddPost() {
             <button variant='contained' color='error' onClick={onClickRemoveImage} >
               Удалить
             </button>
-            <img src={`http://localhost:3001${imgeUrl}`} alt='Uploaded'/>
+            <img className="add-img-post" src={`http://localhost:3001${imgeUrl}`} alt='Uploaded'/>
           </>
         )}
      
@@ -148,11 +155,11 @@ function AddPost() {
           options={options}
         />
         <div className='button-sabmit'>
-          <button onClick={onSubmit} className='add-post-btn' type='submit'>
+          <button onClick={onSubmit} className='button' type='submit'>
             {(isEditing) ? ("Зберегти") : ("Опублiкувати")}
           </button>
           <a href='/'>
-            <button className='add-post-btn'>Відміна</button>
+            <button className='button'>Відміна</button>
           </a>
         </div>
       </div>
