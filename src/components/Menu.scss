@@ -10,7 +10,7 @@
   height: 100vh;
   background: #ffffff;
   border: 1px solid $color_base;
-  top:67px;
+  top:57px;
   left: 0;
   transform: translateX(-100%);
   transition: $tr_secont;
@@ -62,6 +62,6 @@
 @media(max-width: $lg){
   .block-burger-menu{
     display: block;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 0px 0px 0px;
   }
 }

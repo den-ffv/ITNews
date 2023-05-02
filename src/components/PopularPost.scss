@@ -1,28 +1,51 @@
 @import "../style//v";
 
-.populare-post{
+.populare-post {
   max-width: 360px;
   border: 1px solid $color_base;
-  margin: 0px 10px 20px 10px; 
-  transition: $tr_secont;
+  margin: 0px 10px 27px 10px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  align-items:center;
-  &__title{
+  align-items: center;
+  &__title {
     font-family: $ff_titel;
     font-size: 22px;
     text-transform: uppercase;
     margin: 10px 0px 15px 0px;
   }
-  &__content{
+  &__content {
     margin: 5px 10px;
   }
-  &__img{
-    max-width: 130px;
-    img{
+  &__img {
+    max-width: 175px;
+    img {
       width: 100%;
       height: 100%;
+    }
+  }
+}
+@media (max-width: 1220px) {
+  .populare-post {
+    max-width: 360px;
+    border: 1px solid $color_base;
+    margin: 0px 10px 20px 10px;
+    display: block;
+    &__title {
+      font-family: $ff_titel;
+      font-size: 22px;
+      text-transform: uppercase;
+      margin: 10px 0px 15px 0px;
+    }
+    &__content {
+      margin: 5px 10px;
+    }
+    &__img {
+      max-width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

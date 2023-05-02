@@ -22,11 +22,11 @@
     animation: typing 2s steps(30, end), blink-caret 1s step-end infinite;
     /* Анімація для друку тексту і імітації курсора */
     @media(max-width: $md){
-      max-width: 270px;
+      max-width: 300px;
       font-size: 45px;
     }
     @media(max-width: $sm){
-      max-width: 150px;
+      max-width: 180px;
       font-size: 25px;
     }
   }

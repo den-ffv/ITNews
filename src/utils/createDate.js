@@ -18,9 +18,9 @@ const months = [
 
 export function getUserDate(t) {
   let postDate = new Date(t);
-  const month = months[postDate.getMonth()];
+  const month = addZeroInDate(postDate.getMonth());
   const day = addZeroInDate(postDate.getDate());
-  const formattedDate = `${month}${day},${postDate.getFullYear()}`;
+  const formattedDate = `${day}-${month}-${postDate.getFullYear()}`;
   // console.log(formattedDate); // "Березень 31, 2023"
   return formattedDate;
 }

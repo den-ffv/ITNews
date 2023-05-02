@@ -31,8 +31,7 @@ function Header() {
       <div className='header'>
         <div className='wrapper'>
           <div className='header__wrapper'>
-            <div className='header__logo'>
-              <div>
+              
                 <nav className='block-burger-menu'>
                   <div
                     className='burger-menu'
@@ -61,13 +60,16 @@ function Header() {
                     ></div>
                   </div>
                 </nav>
-              </div>
-              <div>
+              
+            <div className='header__logo'>
+              {/* / */}
+              
                 <Link className='logo' to='/'>
                   <img src={logo} alt="" />
-                Uncatch
+                  <p>Uncatch</p>
                 </Link>
-              </div>
+              
+              {/*  */}
             </div>
             <div className='header__nav'>
               <ul className='header__ul'>

@@ -6,6 +6,10 @@ import { minutReadFullPost } from "../utils/minutRead";
 import { fetchAuthMe } from "../redux/slices/auth";
 import { fetchRemovePost } from "../redux/slices/posts";
 import { useNavigate } from "react-router-dom";
+import view from "../img/view.png"
+import twitter from "../img/twitter.png"
+import facebook from "../img/facebook.png"
+import linkedin from "../img/linkedin.png"
 
 import {
   FacebookShareButton,
@@ -14,7 +18,7 @@ import {
 } from "react-share";
 import { FacebookIcon, TwitterIcon, LinkedinIcon } from "react-share";
 
-function FullPost({ title, text, img, tag, postData, userName, idPost }) {
+function FullPost({ title, text, img, tag, postData, userName, idPost, views }) {
  
 
 
@@ -34,8 +38,6 @@ function FullPost({ title, text, img, tag, postData, userName, idPost }) {
   const onClickEdit = () => {
     navigate(`/add-post/${idPost}/edit`);
   };
-
-  const shareUrl = "https://www.itbrew.com/"
   return (
     <>
       <div className='full-post__wrapper'>
@@ -46,21 +48,26 @@ function FullPost({ title, text, img, tag, postData, userName, idPost }) {
           <div className='data-conteiner'>
             <p className='mini-text'>{getUserDate(postData)}</p>
             <p className='mini-text'>{minutReadFullPost(text)}</p>
+            <img className="img-view" src={view} alt="view" />
+            <p className='mini-text'>{views}</p>
           </div>
           <div className='full-post__text'>{text}</div>
 
-          <FacebookShareButton url={shareUrl} quote={title}>
+          <FacebookShareButton url={img} quote={title}>
             {/* <FacebookIcon size={32} round /> */}
-            <p className="likn-social-maras button">Facebook</p>
+            <img className="likn-social-maras" src={facebook} alt="" />
+            {/* <p className="likn-social-maras button">Facebook</p> */}
           </FacebookShareButton>
      
-          <TwitterShareButton url={shareUrl} title={title}>
+          <TwitterShareButton url={img} title={title}>
             {/* <TwitterIcon size={32} round /> */}
-            <p className="likn-social-maras button">Twitter</p>
+            <img className="likn-social-maras" src={twitter} alt="" />
+            {/* <p className="likn-social-maras button">Twitter</p> */}
           </TwitterShareButton>
        
           <LinkedinShareButton url={img} title={title}>
-            <p className="likn-social-maras button">Linkedin</p>
+            {/* <p className="likn-social-maras button">Linkedin</p> */}
+            <img className="likn-social-maras" src={linkedin} alt="" />
           </LinkedinShareButton>
         </div>
         {/* <p>{userName}</p> */}

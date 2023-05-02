@@ -1,6 +1,6 @@
 @import "../style/v";
 .mini-post{
-  max-width: 270px;
+  max-width: 250px;
   border: 1px solid $color_base;
   margin: 0px 10px 20px 10px; 
   transition: $tr_secont;
@@ -41,14 +41,16 @@
   }
 }
 .data-post{
-  // display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   .post-data{
-    padding: 0px 0px 12px 0px;
+    padding: 0px 0px 0px 0px;
   }
 }
 @media(max-width: 950px){
   .mini-post{
-  max-width: 730px;
+  max-width: 640px;
   margin: 0px 10px 20px 10px; 
   a{
     color: $color_base;

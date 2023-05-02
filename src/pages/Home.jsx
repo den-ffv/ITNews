@@ -73,7 +73,7 @@ function Home() {
               </div>
             </div>
             <div className='carts cards-popular'>
-              {popularPosts.slice(0, 5).map((obj) => (
+              {popularPosts.slice(0, 4).map((obj) => (
                 <PopularPost
                   key={obj._id}
                   idPost={obj._id}
@@ -87,7 +87,7 @@ function Home() {
               ))}
             </div>
           </div>
-          <div>
+          <div className='cards-all'>
             {posts.items.slice(3).map((obj, index) => (
               <Post
                 key={obj._id}

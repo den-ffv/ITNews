@@ -39,6 +39,7 @@ function FullPostPage() {
           title={data.title}
           text={<ReactMarkdown children={data.text}/>}
           img ={data.imgeUrl ? `http://localhost:3001${data.imgeUrl}` : ""}
+          views={data.viewsCount}
           tag={data.tags}
           postData={data.createdAt}
           userName={data.user.fullName}

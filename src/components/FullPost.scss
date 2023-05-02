@@ -34,8 +34,6 @@
     margin: 0px 0px 30px 0px;
     h1{
       font-size: $fz_bg-titel;
-
-
     }
     h2{
       font-size: $fz_titel;
@@ -106,9 +104,24 @@
     }
   }
 }
+.likn-social-maras{
+  width: 30px;
+  margin: 5px;
+  transition: $tr_secont;
+  &:hover{
+    background: #52525264;
+    border-radius: 4px;
+    transition: $tr_secont;
+  }
+}
 .data-conteiner{
   display: flex;
   margin: 5px 0px 5px 0px;
+  align-items:center;
+  .img-view{
+    width: 20px;
+    margin: 0px 6px 0px 0px;
+  }
   p{
     margin: 0px 10px 0px 0px;
     color: rgb(155, 155, 155);
