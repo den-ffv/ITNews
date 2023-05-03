@@ -17,7 +17,7 @@ function Home() {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector((state) => state.posts);
   const [isLoading, setLoading] = useState(true);
-
+  console.log(tags);
   useEffect(() => {
     dispatch(fetchPosts());
     setTimeout(() => {
@@ -87,18 +87,27 @@ function Home() {
               ))}
             </div>
           </div>
-          <div className='cards-all'>
-            {posts.items.slice(3).map((obj, index) => (
-              <Post
-                key={obj._id}
-                idPost={obj._id}
-                title={obj.title}
-                text={obj.text}
-                img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
-                tag={obj.tags}
-                postDate={obj.createdAt}
-              />
-            ))}
+          <div className='cards__wrapper'>
+            <div className='cards-all'>
+              {posts.items.slice(3).map((obj, index) => (
+                <Post
+                  key={obj._id}
+                  idPost={obj._id}
+                  title={obj.title}
+                  text={obj.text}
+                  img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                  tag={obj.tags}
+                  postDate={obj.createdAt}
+                />
+              ))}
+            </div>
+            <div className='tags-conteiner'>
+              <p>js</p>
+              <p>world</p>
+              <p>disnes</p>
+              <p>react</p>
+              <p>node.js</p>
+            </div>
           </div>
         </>
       </div>
