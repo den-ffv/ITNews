@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "../axios";
 import MiniPost from "../components/MiniPost";
 import "../style/pages.scss";
-import { fetchPosts } from "../redux/slices/posts";
+import { fetchPosts, fetchTags } from "../redux/slices/posts";
 import PreLoader from "../components/PreLoader";
 import Post from "../components/Post";
 import BigPost from "../components/BigPost";
@@ -17,9 +17,10 @@ function Home() {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector((state) => state.posts);
   const [isLoading, setLoading] = useState(true);
-  console.log(tags);
+  console.log(tags)
   useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchTags());
     setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -102,11 +103,18 @@ function Home() {
               ))}
             </div>
             <div className='tags-conteiner'>
-              <p>js</p>
-              <p>world</p>
-              <p>disnes</p>
-              <p>react</p>
-              <p>node.js</p>
+              <p>Tags</p>
+              {tags.items.filter((tag, index, self) => index === self.findIndex(t => t.tags === tag.tags)).map((obj) => (
+                <>
+                  <a href={`/${obj.tags}`}>{obj.tags}</a>
+                </>
+              ))}
+
+              {/* <a href='#'>js</a>
+              <a href='#'>world</a>
+              <a href='#'>disnes</a>
+              <a href='#'>react</a>
+              <a href='#'>node.js</a> */}
             </div>
           </div>
         </>

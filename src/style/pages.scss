@@ -9,6 +9,7 @@
 .cards__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   @media (max-width: 1220px) {
     display: block;
   }
@@ -60,7 +61,6 @@
   max-width: 800px;
   border-top: 2px solid $color_base;
   padding: 10px 10px 0px 0px;
-
   position: relative;
   &::before {
     content: "всі";
@@ -73,17 +73,27 @@
   }
 }
 .tags-conteiner{
-  max-width: 400px;
-  max-height: 500px;
-  margin: 0px 30px 0px 0px;
-  padding: 20px 50px 20px 50px;
+  width: 320px;
+  height: auto;
+  margin: 0px 30px 0px 30px;
+  padding: 20px 0px 20px 0px;
   border: 1px solid $color_base;
+  display: flex;
+  flex-direction: column;
   p{
     text-align: center;
     font-size: $fz_titel;
+    padding: 0px 0px 10px 0px;
+  }
+  a{
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    font-size: $fz_base;
+    color: $color_base;
     margin: 10px 0px;
     &:hover{
-      background: #a0a0a0;
+      cursor: pointer;
+      background: #bebebe;
     }
   }
 }
