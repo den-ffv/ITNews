@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts, fetchTags } from "../redux/slices/posts";
 import { Link } from "react-router-dom";
 import axios from "../axios";
-import MiniPost from "../components/MiniPost";
 import "../style/pages.scss";
-import { fetchPosts, fetchTags } from "../redux/slices/posts";
+import MiniPost from "../components/MiniPost";
 import PreLoader from "../components/PreLoader";
 import Post from "../components/Post";
 import BigPost from "../components/BigPost";
-// import Search from "../components/Search";
-// import "../components/Search.scss";
-// import search from "../img/search.png";
 import PopularPost from "../components/PopularPost";
 
 function Home() {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector((state) => state.posts);
+  console.log(tags.items)
   const [isLoading, setLoading] = useState(true);
-  console.log(tags)
+
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchTags());
@@ -25,12 +23,12 @@ function Home() {
       setLoading(false);
     }, 3000);
   }, []);
-  // console.log(posts.items)
+
   const popularPosts = [...posts.items].sort(
     (a, b) => b.viewsCount - a.viewsCount
   );
-  // console.log(popularPosts)
-
+  const uniqueTags = [...new Set(posts.items.flatMap((post) => post.tags))];
+  console.log(uniqueTags)
   if (isLoading) {
     return <PreLoader />;
   }
@@ -88,7 +86,7 @@ function Home() {
               ))}
             </div>
           </div>
-          <div className='cards__wrapper'>
+          <div className='cards__wrapper cards-all__wrapper'>
             <div className='cards-all'>
               {posts.items.slice(3).map((obj, index) => (
                 <Post
@@ -103,18 +101,14 @@ function Home() {
               ))}
             </div>
             <div className='tags-conteiner'>
-              <p>Tags</p>
-              {tags.items.filter((tag, index, self) => index === self.findIndex(t => t.tags === tag.tags)).map((obj) => (
-                <>
-                  <a href={`/${obj.tags}`}>{obj.tags}</a>
-                </>
-              ))}
-
-              {/* <a href='#'>js</a>
-              <a href='#'>world</a>
-              <a href='#'>disnes</a>
-              <a href='#'>react</a>
-              <a href='#'>node.js</a> */}
+              <h2>Tags:</h2>
+              <ul>
+                {uniqueTags.map((tag) => (
+                  <li key={tag}>
+                    <Link to={`/category/${tag}`}>{tag}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </>

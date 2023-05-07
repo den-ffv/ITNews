@@ -14,6 +14,20 @@
     display: block;
   }
 }
+.cards-all__wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @media (max-width: 1220px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+.main-title{
+  text-align: center;
+  font-size: $fz_bg-titel;
+  margin: 20px 0px 0px 0px;
+}
 .cards-new {
   display: flex;
   border-top: 2px solid $color_base;
@@ -29,7 +43,7 @@
     align-items: center;
   }
   &::before {
-    content: "найновіші";
+    content: "new";
     background: $color_base;
     padding: 5px;
     color: #fff;
@@ -48,7 +62,7 @@
     max-width: 800px;
   }
   &::before {
-    content: "популярні";
+    content: "most recent";
     background: $color_base;
     padding: 5px;
     color: #fff;
@@ -63,7 +77,7 @@
   padding: 10px 10px 0px 0px;
   position: relative;
   &::before {
-    content: "всі";
+    content: "othre";
     background: $color_base;
     padding: 5px;
     color: #fff;
@@ -73,27 +87,46 @@
   }
 }
 .tags-conteiner{
-  width: 320px;
-  height: auto;
-  margin: 0px 30px 0px 30px;
-  padding: 20px 0px 20px 0px;
+  max-width: 520px;
+  margin: 0px 30px 20px 30px;
+  padding: 20px;
   border: 1px solid $color_base;
   display: flex;
   flex-direction: column;
-  p{
-    text-align: center;
-    font-size: $fz_titel;
-    padding: 0px 0px 10px 0px;
+  @media(max-width: 1220px){
+    margin: 0px 10px 20px 10px
+
   }
-  a{
-    padding: 5px 0px 5px 0px;
+  h2{
     text-align: center;
-    font-size: $fz_base;
-    color: $color_base;
-    margin: 10px 0px;
-    &:hover{
-      cursor: pointer;
-      background: #bebebe;
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: $ff_titel;
+    padding: 0px 0px 10px 0px;
+    border-bottom: 1px solid $color_base;
+  }
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0px 0px 0px;
+  }
+  li{
+    padding: 15px 0px 15px 0px;
+    margin: 5px 5px;
+    text-align: center;
+    font-size: $fz_mini-text;
+    text-transform: uppercase;
+    a{
+      color: $color_base;
+      padding: 5px 15px;
+      background: #E5E5E5;
+      border-radius: 25px;
+      border: 1px solid transparent;
+      &:hover{
+        cursor: pointer;
+        border: 1px solid $color_base;
+      }
     }
   }
 }

@@ -11,10 +11,12 @@ import Home from "./pages/Home";
 import News from "./pages/News";
 import Profile from "./pages/Profile";
 import FullPostPage from "./pages/FullPostPage";
+import SearchPage from "./pages/SearchPage";
 import NotFoundPage from './pages/NotFoundPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 import AddPost from './pages/AddPost';
+import Category from './pages/Category';
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
           <Routes>
               <Route path='/' element={<Home/>} />
               <Route path='//:fullpost/:id' element={<FullPostPage/>} />
+              <Route path='/category/:tag' element={<Category/>} />
               <Route path='/news' element={<News/>} />
               <Route path='/user' element={<Profile/>} />
               <Route path='/add-post/:id/edit' element={<AddPost/>} />
@@ -39,6 +42,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/singup' element={<Singup />} />
               <Route path="/login/forgotpass" element={<ForgotPass/>}/>
+              <Route path="/search-post" element={<SearchPage/>}/>
               <Route path="*" element={<NotFoundPage/>}/>
           </Routes>
         </main>
