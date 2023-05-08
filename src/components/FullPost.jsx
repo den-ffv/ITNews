@@ -5,7 +5,7 @@ import { getUserDate } from "../utils/createDate";
 import { minutReadFullPost } from "../utils/minutRead";
 import { fetchAuthMe } from "../redux/slices/auth";
 import { fetchRemovePost } from "../redux/slices/posts";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import view from "../img/view.png"
 import twitter from "../img/twitter.png"
 import facebook from "../img/facebook.png"
@@ -41,7 +41,7 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views }) 
   return (
     <>
       <div className='full-post__wrapper'>
-        <p className='mini-text'>{tag}</p>
+        <Link to={`/category/${tag}`} className='mini-text'>{tag}</Link>
         <h1 className='full-post__title title'>{title}</h1>
         {!img ? "" : <img className='full-post__img' src={img} alt='img' />}
         <div className='text-conteiner'>

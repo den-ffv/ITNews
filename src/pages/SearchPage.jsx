@@ -13,7 +13,7 @@ function Search() {
 
   return (
     <div className='wrapper'>
-      <h1 className="main-title">Search Post from Uncatch</h1> 
+      <h1 className="main-title">Search Post from <span>Uncatch</span></h1> 
       <div className='search__wrapper '>
         <img src={search} alt='' />
         <input
