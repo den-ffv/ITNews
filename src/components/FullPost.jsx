@@ -6,10 +6,10 @@ import { minutReadFullPost } from "../utils/minutRead";
 import { fetchAuthMe } from "../redux/slices/auth";
 import { fetchRemovePost } from "../redux/slices/posts";
 import { Link, useNavigate } from "react-router-dom";
-import view from "../img/view.png"
-import twitter from "../img/twitter.png"
-import facebook from "../img/facebook.png"
-import linkedin from "../img/linkedin.png"
+import view from "../img/view.png";
+import twitter from "../img/twitter.png";
+import facebook from "../img/facebook.png";
+import linkedin from "../img/linkedin.png";
 
 import {
   FacebookShareButton,
@@ -18,16 +18,19 @@ import {
 } from "react-share";
 import { FacebookIcon, TwitterIcon, LinkedinIcon } from "react-share";
 
-function FullPost({ title, text, img, tag, postData, userName, idPost, views }) {
- 
-
-
+function FullPost({
+  title,
+  text,
+  img,
+  tag,
+  postData,
+  userName,
+  idPost,
+  views,
+}) {
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
   const isAdmin = user && user.role === "admin";
   const navigate = useNavigate();
-  console.log(isAdmin);
-  console.log(idPost);
-
   const disparch = useDispatch();
   const onClickRemove = () => {
     if (window.confirm("Ви дійсно хочете видалити?")) {
@@ -41,33 +44,30 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views }) 
   return (
     <>
       <div className='full-post__wrapper'>
-        <Link to={`/category/${tag}`} className='mini-text'>{tag}</Link>
+        <Link to={`/category/${tag}`} className='mini-text'>
+          {tag}
+        </Link>
         <h1 className='full-post__title title'>{title}</h1>
         {!img ? "" : <img className='full-post__img' src={img} alt='img' />}
         <div className='text-conteiner'>
           <div className='data-conteiner'>
             <p className='mini-text'>{getUserDate(postData)}</p>
             <p className='mini-text'>{minutReadFullPost(text)}</p>
-            <img className="img-view" src={view} alt="view" />
+            <img className='img-view' src={view} alt='view' />
             <p className='mini-text'>{views}</p>
           </div>
           <div className='full-post__text'>{text}</div>
 
           <FacebookShareButton url={img} quote={title}>
-            {/* <FacebookIcon size={32} round /> */}
-            <img className="likn-social-maras" src={facebook} alt="" />
-            {/* <p className="likn-social-maras button">Facebook</p> */}
+            <img className='likn-social-maras' src={facebook} alt='' />
           </FacebookShareButton>
-     
+
           <TwitterShareButton url={img} title={title}>
-            {/* <TwitterIcon size={32} round /> */}
-            <img className="likn-social-maras" src={twitter} alt="" />
-            {/* <p className="likn-social-maras button">Twitter</p> */}
+            <img className='likn-social-maras' src={twitter} alt='' />
           </TwitterShareButton>
-       
+
           <LinkedinShareButton url={img} title={title}>
-            {/* <p className="likn-social-maras button">Linkedin</p> */}
-            <img className="likn-social-maras" src={linkedin} alt="" />
+            <img className='likn-social-maras' src={linkedin} alt='' />
           </LinkedinShareButton>
         </div>
         {/* <p>{userName}</p> */}

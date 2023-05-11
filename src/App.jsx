@@ -42,7 +42,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/singup' element={<Singup />} />
               <Route path="/login/forgotpass" element={<ForgotPass/>}/>
-              <Route path="/search-post" element={<SearchPage/>}/>
+              <Route path="/search" element={<SearchPage/>}/>
               <Route path="*" element={<NotFoundPage/>}/>
           </Routes>
         </main>

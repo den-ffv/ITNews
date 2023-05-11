@@ -29,7 +29,6 @@ function Category() {
   if (isLoading) {
     return <PreLoader />;
   }
-  // console.log(posts.items);
   return (
     <div className='wrapper'>
       <h1 className='main-title'>{tag}</h1>

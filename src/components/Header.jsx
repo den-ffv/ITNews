@@ -16,7 +16,7 @@ function Header() {
     { value: "Новини", href: "/news" },
     { value: "Блог", href: "/blog" },
     { value: "Мови", href: "/leng" },
-    { value: "Search", href: "/search-post" },
+    { value: "Search", href: "/search" },
   ];
 
   const isAuth = useSelector(selectIsAuth);
@@ -102,7 +102,7 @@ function Header() {
                 </div>
               )}
 
-              <Link className="search-link" to='/search-post'>
+              <Link className="search-link" to='/search'>
                 <img className="search-img" src={search} alt='' />
               </Link>
             </div>
