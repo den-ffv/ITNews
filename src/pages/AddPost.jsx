@@ -54,7 +54,7 @@ function AddPost() {
       const fields = {
         title, 
         imgeUrl,
-        tags: tags.slice(","),
+        tags: tags.slice(",").toLowerCase().replace(/\s/g, ""),
         text,
       }
     

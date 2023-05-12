@@ -11,6 +11,9 @@ import twitter from "../img/twitter.png";
 import facebook from "../img/facebook.png";
 import linkedin from "../img/linkedin.png";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import {
   FacebookShareButton,
   TwitterShareButton,

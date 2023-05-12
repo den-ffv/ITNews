@@ -13,8 +13,15 @@ import PopularPost from "../components/PopularPost";
 function Home() {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector((state) => state.posts);
-  console.log(tags.items)
   const [isLoading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  const popularPosts = [...posts.items].sort(
+    (a, b) => b.viewsCount - a.viewsCount
+  );
+  const uniqueTags = [...new Set(posts.items.flatMap((post) => post.tags))];
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -24,11 +31,18 @@ function Home() {
     }, 3000);
   }, []);
 
-  const popularPosts = [...posts.items].sort(
-    (a, b) => b.viewsCount - a.viewsCount
-  );
-  const uniqueTags = [...new Set(posts.items.flatMap((post) => post.tags))];
-  console.log(uniqueTags)
+  const handleLoadMore = () => {
+    setPostsPerPage(postsPerPage + 6);
+  };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.items.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   if (isLoading) {
     return <PreLoader />;
   }
@@ -88,7 +102,7 @@ function Home() {
           </div>
           <div className='cards__wrapper cards-all__wrapper'>
             <div className='cards-all'>
-              {posts.items.slice(3).map((obj, index) => (
+              {currentPosts.slice(3).map((obj, index) => (
                 <Post
                   key={obj._id}
                   idPost={obj._id}
@@ -99,6 +113,33 @@ function Home() {
                   postDate={obj.createdAt}
                 />
               ))}
+              {/* Pagination */}
+              {/* <div className='pagination'>
+                {posts.items.length > postsPerPage && (
+                  <ul className='pagination-list'>
+                    {Array.from(
+                      { length: Math.ceil(posts.items.length / postsPerPage) },
+                      (_, index) => (
+                        <li
+                          key={index}
+                          className={`pagination-item ${
+                            currentPage === index + 1 ? "active" : ""
+                          }`}
+                          onClick={() => paginate(index + 1)}
+                        >
+                          {index + 1}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                )}
+              </div> */}
+
+              {currentPosts.length < posts.items.length && (
+                <div className='load-more-button'>
+                  <button onClick={handleLoadMore}>Load More</button>
+                </div>
+              )}
             </div>
             <div className='tags-conteiner'>
               <h2>Tags:</h2>

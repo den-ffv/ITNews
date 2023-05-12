@@ -141,6 +141,19 @@
     }
   }
 }
+.load-more-button{
+  display: flex;
+  justify-content: center;
+  button{
+    border-radius: 4px;
+    font-size: $fz_base;
+    background: #2f6697;
+    color:#ffffff;
+    text-transform: uppercase;
+    padding: 5px 10px 5px 10px;
+    margin: 10px 0;
+  }
+}
 // .carts {
 //   margin: 30px 0px 0px 0px;
 //   @media (max-width: 1300px) {

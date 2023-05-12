@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/SearchPage.scss";
 import { useSearchParams } from "react-router-dom";
 import search from "../img/search.png";
@@ -11,32 +11,43 @@ function Search() {
   const dispatch = useDispatch();
 
   const { posts, tags } = useSelector((state) => state.posts);
-  const [value, setValue] = React.useState("");
-  const [filteredPost, setFilteredPost] = React.useState([]);
-  const [isLoading, setLoading] = React.useState(true);
-
+  const [value, setValue] = useState("");
+  const [filteredPost, setFilteredPost] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const postQuery = searchParams.get("post") || "";
   const hendelSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const query = form.search.value;
-    setSearchParams({post: query})
+    setSearchParams({ post: query });
+  };
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(6);
+  const handleLoadMore = () => {
+    setPostsPerPage(postsPerPage + 6);
   };
 
-  React.useEffect(() => {
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.items.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  //--------------
+
+  useEffect(() => {
     dispatch(fetchPosts());
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
 
-  // const handleSearch = () => {
-    const filteredPosts = posts.items.filter((post) => {
-      return post.title.toLowerCase().includes(postQuery);
-    });
-  //   setFilteredPost(filteredPosts);
-  // };
+  const filteredPosts = posts.items.filter((post) => {
+    return post.title.toLowerCase().includes(postQuery);
+  });
 
   if (isLoading) {
     return <PreLoader />;
@@ -46,9 +57,13 @@ function Search() {
       <h1 className='main-title'>
         Search Post from <span>Uncatch</span>
       </h1>
-      <div >
-        <form className='search__wrapper ' autoCapitalize='off' onSubmit={hendelSubmit}>
-        <img src={search} alt='search' />
+      <div>
+        <form
+          className='search__wrapper '
+          autoCapitalize='off'
+          onSubmit={hendelSubmit}
+        >
+          <img src={search} alt='search' />
           <input
             type='text'
             name='search'
@@ -56,24 +71,29 @@ function Search() {
             className='search'
             onChange={(event) => setValue(event.target.value)}
           />
-          <input className='search__button' type="submit" value={"search"}/>
+          <input className='search__button' type='submit' value={"search"} />
         </form>
       </div>
       {/* numbrt of articles <p>{posts.items.length}</p> */}
       <div className='cards'>
-        {posts.items.filter(
-         post => post.title.toLowerCase().includes(postQuery)
-        ).map((obj, index) => (
-          <Post
-            key={obj._id}
-            idPost={obj._id}
-            title={obj.title}
-            text={obj.text}
-            img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
-            tag={obj.tags}
-            postDate={obj.createdAt}
-          />
-        ))}
+        {currentPosts
+          .filter((post) => post.title.toLowerCase().includes(postQuery))
+          .map((obj, index) => (
+            <Post
+              key={obj._id}
+              idPost={obj._id}
+              title={obj.title}
+              text={obj.text}
+              img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+              tag={obj.tags}
+              postDate={obj.createdAt}
+            />
+          ))}
+        {currentPosts.length < posts.items.length && (
+          <div className='load-more-button'>
+            <button onClick={handleLoadMore}>Load More</button>
+          </div>
+        )}
       </div>
     </div>
   );
