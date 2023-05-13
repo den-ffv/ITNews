@@ -44,6 +44,7 @@ function FullPost({
   const onClickEdit = () => {
     navigate(`/add-post/${idPost}/edit`);
   };
+
   return (
     <>
       <div className='full-post__wrapper'>
@@ -59,8 +60,9 @@ function FullPost({
             <img className='img-view' src={view} alt='view' />
             <p className='mini-text'>{views}</p>
           </div>
-          <div className='full-post__text'>{text}</div>
-
+          <div className='full-post__text'>
+            {text}
+          </div>
           <FacebookShareButton url={img} quote={title}>
             <img className='likn-social-maras' src={facebook} alt='' />
           </FacebookShareButton>

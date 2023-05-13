@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PreLoader from "../components/PreLoader";
 import Post from "../components/Post";
@@ -9,16 +9,25 @@ function Category() {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
   const [isLoading, setLoading] = React.useState(true);
-
   const { tag } = useParams();
- 
-
   const filteredTags = posts.items.filter((post) => {
     return post.tags.includes(tag);
   });
 
-  console.log(filteredTags)
-  React.useEffect(() => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredTags.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts)
+  const showLoadMoreButton = currentPosts.length < filteredTags.length;
+
+
+    const handleLoadMore = () => {
+    setPostsPerPage(postsPerPage + 5);
+  };
+
+  useEffect(() => {
     dispatch(fetchTags(tag));
     dispatch(fetchPosts(tag));
     setTimeout(() => {
@@ -33,7 +42,7 @@ function Category() {
     <div className='wrapper'>
       <h1 className='main-title'>{tag}</h1>
       <div className=''>
-        {filteredTags.map((obj, index) => (
+        {currentPosts.map((obj, index) => (
           <Post
             key={obj._id}
             idPost={obj._id}
@@ -44,6 +53,11 @@ function Category() {
             postDate={obj.createdAt}
           />
         ))}
+        {showLoadMoreButton && (
+          <div className='load-more-button'>
+            <button onClick={handleLoadMore}>Load More</button>
+          </div>
+        )}
       </div>
     </div>
   );

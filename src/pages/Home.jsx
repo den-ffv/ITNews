@@ -15,8 +15,7 @@ function Home() {
   const { posts, tags } = useSelector((state) => state.posts);
   const [isLoading, setLoading] = useState(true);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+
 
   const popularPosts = [...posts.items].sort(
     (a, b) => b.viewsCount - a.viewsCount
@@ -30,7 +29,9 @@ function Home() {
       setLoading(false);
     }, 3000);
   }, []);
-
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const handleLoadMore = () => {
     setPostsPerPage(postsPerPage + 6);
   };

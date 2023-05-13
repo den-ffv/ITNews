@@ -28,6 +28,8 @@
 }
 .mini-text {
   padding: 0px 20px 0px 0px;
+  color: $color_base;
+  text-transform: uppercase;
 }
 @media (max-width: 690px) {
   .post-card {
@@ -55,8 +57,5 @@
     &__title {
       margin: 10px 0px 20px 0px;
     }
-  }
-  .mini-text {
-    padding: 0px 20px 0px 0px;
   }
 }

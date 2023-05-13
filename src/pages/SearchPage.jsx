@@ -33,6 +33,7 @@ function Search() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.items.slice(indexOfFirstPost, indexOfLastPost);
 
+  const showLoadMoreButton = currentPosts.length <  posts.items.length;
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

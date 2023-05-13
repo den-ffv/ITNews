@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../style/AddPost.scss";
 import { useSelector } from "react-redux";
 import { selectIsAuth } from "../redux/slices/auth";
@@ -18,12 +18,12 @@ function AddPost() {
 
   const {id} = useParams()
   const isEditing = Boolean(id);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [text, setText] = React.useState("");
-  const [title, setTitle] = React.useState("");
-  const [tags, setTags] = React.useState("");
-  const [imgeUrl, setImgeUrl] = React.useState("");
+  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
+  const [imgeUrl, setImgeUrl] = useState("");
   const inputFileRef = React.useRef(null)
 
 
@@ -86,14 +86,14 @@ function AddPost() {
     []
   );
 
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   if (!window.localStorage.getItem("token") && !isAuth && isAdmin) {
   //     return navigate("/");
   //   }
   // }, []); 
 
 
-  React.useEffect( () => {
+  useEffect( () => {
     if(id && isEditing){
       axios.get(`/posts/${id}`).then(({data}) => {
         setTitle(data.title)
@@ -103,16 +103,13 @@ function AddPost() {
       })
     }
   }, [id ,isEditing])
+  console.log(isAdmin)
+  console.log(!window.localStorage.getItem("token"))
+  if (window.localStorage.getItem("token") && isAdmin === false) {
+    return navigate("/")
+  }
 
-  if (!window.localStorage.getItem("token") && !isAdmin) {
-    return  <NotFoundPage/>
-      {/* navigate("/"); */}
-  
-   
-  }
-  if (window.localStorage.getItem("token") && isLoading) {
-    return <PreLoader />;
-  }
+ 
 
   return (
     <>
@@ -137,7 +134,7 @@ function AddPost() {
             className='input-title'
             variant='standard'
             placeholder='Заголовок статi...'
-            fullWidth
+            
           />
           <input
             value={tags}
@@ -145,7 +142,7 @@ function AddPost() {
             className='input-tags'
             variant='standard'
             placeholder='Теги'
-            fullWidth
+            
           />
         </div>
 
