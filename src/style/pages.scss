@@ -1,19 +1,8 @@
 @import "../style/_v";
 .home__wrapper {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   margin: 30px auto 0px auto;
-  // align-items: center;
 }
-.cards__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  @media (max-width: 1220px) {
-    display: block;
-  }
-}
+
 .cards-all__wrapper{
   display: flex;
   justify-content: space-between;
@@ -39,9 +28,10 @@
 }
 .cards-new {
   display: flex;
+  justify-content: center;
   border-top: 2px solid $color_base;
   margin: 0px 10px 0px 0px;
-  padding: 50px 0px 0px 0px;
+  padding: 30px 0px 0px 0px;
   position: relative;
   @media (max-width: 1220px) {
     justify-content: center;
@@ -51,53 +41,38 @@
     flex-direction: column-reverse;
     align-items: center;
   }
-  &::before {
-    content: "new";
-    background: $color_base;
-    padding: 5px;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 }
 .cards-popular {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   border-top: 2px solid $color_base;
-  padding: 50px 0px 0px 0px;
+  padding: 40px 0px 0px 0px;
   position: relative;
-  @media(max-width: 1220px){
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 800px;
-  }
-  &::before {
-    content: "most recent";
-    background: $color_base;
-    padding: 5px;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  // @media(max-width: 1220px){
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   max-width: 800px;
+  // }
 }
 .cards-all {
   max-width: 800px;
   border-top: 2px solid $color_base;
-  padding: 10px 10px 0px 0px;
+  padding: 40px 10px 0px 0px;
   position: relative;
-  &::before {
-    content: "othre";
-    background: $color_base;
-    padding: 5px;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+}
+.cards-header-text{
+  background: $color_base;
+  font-family: $ff_text;
+  padding: 3px 5px 5px 5px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .tags-conteiner{
   max-width: 520px;
-  margin: 0px 30px 20px 30px;
+  margin: 0px 10px 20px 30px;
   padding: 20px;
   border: 1px solid $color_base;
   display: flex;
@@ -145,12 +120,11 @@
   display: flex;
   justify-content: center;
   button{
-    border-radius: 4px;
     font-size: $fz_base;
-    background: #2f6697;
+    background: $color_base;
     color:#ffffff;
     text-transform: uppercase;
-    padding: 5px 10px 5px 10px;
+    padding: 15px 30px 15px 30px;
     margin: 10px 0;
   }
 }

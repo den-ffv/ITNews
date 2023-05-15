@@ -5,7 +5,7 @@ import { getUserDate } from "../utils/createDate";
 import { minutRead } from "../utils/minutRead";
 function Post({ idPost, title, text, img, tag, postDate, user }) {
   return (
-    <div className="card__link">
+    // <div className="card__link">
         <Link className='card__link' to={`/fullpost/${idPost}`}>
       <div className='post-card'>
           <div className='post-card__img'>
@@ -24,7 +24,7 @@ function Post({ idPost, title, text, img, tag, postDate, user }) {
           </div>
       </div>
         </Link>
-    </div>
+    // </div>
   );
 }
 

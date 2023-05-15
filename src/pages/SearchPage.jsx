@@ -56,7 +56,7 @@ function Search() {
   return (
     <div className='wrapper'>
       <h1 className='main-title'>
-        Search Post from <span>Uncatch</span>
+        Шукай на <span>Uncatch</span>
       </h1>
       <div>
         <form
@@ -92,7 +92,7 @@ function Search() {
           ))}
         {currentPosts.length < posts.items.length && (
           <div className='load-more-button'>
-            <button onClick={handleLoadMore}>Load More</button>
+            <button onClick={handleLoadMore}>Дивитись більше</button>
           </div>
         )}
       </div>

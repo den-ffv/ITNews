@@ -15,8 +15,6 @@ function Home() {
   const { posts, tags } = useSelector((state) => state.posts);
   const [isLoading, setLoading] = useState(true);
 
-
-
   const popularPosts = [...posts.items].sort(
     (a, b) => b.viewsCount - a.viewsCount
   );
@@ -29,7 +27,7 @@ function Home() {
       setLoading(false);
     }, 3000);
   }, []);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const handleLoadMore = () => {
@@ -51,58 +49,56 @@ function Home() {
     <>
       <div className='home__wrapper wrapper'>
         <>
-          <div className='cards__wrapper'>
-            <div className='cards-new'>
-              <div className='carts'>
-                {posts.items.slice(1, 3).map((obj) => (
-                  <MiniPost
-                    key={obj._id}
-                    idPost={obj._id}
-                    title={obj.title}
-                    text={obj.text}
-                    img={
-                      obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""
-                    }
-                    tag={obj.tags}
-                    postDate={obj.createdAt}
-                    user={obj.user.fullName}
-                  />
-                ))}
-              </div>
-              <div className='carts'>
-                {posts.items.slice(0, 1).map((obj) => (
-                  <BigPost
-                    key={obj._id}
-                    idPost={obj._id}
-                    title={obj.title}
-                    text={obj.text}
-                    img={
-                      obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""
-                    }
-                    tag={obj.tags}
-                    postDate={obj.createdAt}
-                    user={obj.user.fullName}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className='carts cards-popular'>
-              {popularPosts.slice(0, 4).map((obj) => (
-                <PopularPost
+          <div className='cards-new'>
+            <p className='cards-header-text'>нові</p>
+            <div className='carts'>
+              {posts.items.slice(1, 3).map((obj) => (
+                <MiniPost
                   key={obj._id}
                   idPost={obj._id}
                   title={obj.title}
-                  // text={obj.text}
+                  text={obj.text}
                   img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
                   tag={obj.tags}
-                  // postDate={obj.createdAt}
-                  // user={obj.user.fullName}
+                  postDate={obj.createdAt}
+                  user={obj.user.fullName}
+                />
+              ))}
+            </div>
+            <div className='carts'>
+              {posts.items.slice(0, 1).map((obj) => (
+                <BigPost
+                  key={obj._id}
+                  idPost={obj._id}
+                  title={obj.title}
+                  text={obj.text}
+                  img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                  tag={obj.tags}
+                  postDate={obj.createdAt}
+                  user={obj.user.fullName}
                 />
               ))}
             </div>
           </div>
+          <div className='carts cards-popular'>
+            <p className='cards-header-text'>популярна</p>
+            {popularPosts.slice(0, 4).map((obj) => (
+              <PopularPost
+                key={obj._id}
+                idPost={obj._id}
+                title={obj.title}
+                // text={obj.text}
+                img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                tag={obj.tags}
+                views={obj.viewsCount}
+                // user={obj.user.fullName}
+              />
+            ))}
+          </div>
+
           <div className='cards__wrapper cards-all__wrapper'>
             <div className='cards-all'>
+              <p className='cards-header-text'>всі публікації</p>
               {currentPosts.slice(3).map((obj, index) => (
                 <Post
                   key={obj._id}
@@ -114,36 +110,9 @@ function Home() {
                   postDate={obj.createdAt}
                 />
               ))}
-              {/* Pagination */}
-              {/* <div className='pagination'>
-                {posts.items.length > postsPerPage && (
-                  <ul className='pagination-list'>
-                    {Array.from(
-                      { length: Math.ceil(posts.items.length / postsPerPage) },
-                      (_, index) => (
-                        <li
-                          key={index}
-                          className={`pagination-item ${
-                            currentPage === index + 1 ? "active" : ""
-                          }`}
-                          onClick={() => paginate(index + 1)}
-                        >
-                          {index + 1}
-                        </li>
-                      )
-                    )}
-                  </ul>
-                )}
-              </div> */}
-
-              {currentPosts.length < posts.items.length && (
-                <div className='load-more-button'>
-                  <button onClick={handleLoadMore}>Load More</button>
-                </div>
-              )}
             </div>
             <div className='tags-conteiner'>
-              <h2>Tags:</h2>
+              <h2>Теги</h2>
               <ul>
                 {uniqueTags.map((tag) => (
                   <li key={tag}>
@@ -153,6 +122,11 @@ function Home() {
               </ul>
             </div>
           </div>
+          {currentPosts.length < posts.items.length && (
+            <div className='load-more-button'>
+              <button onClick={handleLoadMore}>Дивитись більше</button>
+            </div>
+          )}
         </>
       </div>
     </>
