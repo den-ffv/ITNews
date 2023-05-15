@@ -35,7 +35,9 @@ function App() {
               <Route path='/' element={<Home/>} />
               <Route path='//:fullpost/:id' element={<FullPostPage/>} />
               <Route path='/category/:tag' element={<Category/>} />
-              <Route path='/news' element={<News/>} />
+              {/* <Route path='/category/news' element={<News/>} /> */}
+              {/* <Route path='/category/ideas' element={<Category/>} /> */}
+              {/* <Route path='/category/science' element={<Science/>} /> */}
               <Route path='/user' element={<Profile/>} />
               <Route path='/add-post/:id/edit' element={<AddPost/>} />
               <Route path='/add-post' element={<AddPost/>} />

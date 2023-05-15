@@ -13,10 +13,10 @@ function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const items = [
     { value: "Головна", href: "/" },
-    { value: "Новини", href: "/news" },
-    { value: "Блог", href: "/blog" },
-    { value: "Мови", href: "/leng" },
-    { value: "Search", href: "/search" },
+    { value: "Новини", href: "/category/news" },
+    { value: "Ідеї", href: "/category/ideas" },
+    { value: "Наука", href: "/category/science" },
+    { value: "Пошук", href: "/search" },
   ];
 
   const isAuth = useSelector(selectIsAuth);
@@ -68,7 +68,7 @@ function Header() {
             </div>
             <div className='header__nav'>
               <ul className='header__ul'>
-                {items.slice(0,4).map((item, index) => (
+                {items.slice(0, 4).map((item, index) => (
                   <li key={index}>
                     <Link className='header__link' to={item.href}>
                       {item.value}
@@ -77,17 +77,17 @@ function Header() {
                 ))}
               </ul>
             </div>
-            <div className="right-menu-warpper">
+            <div className='right-menu-warpper'>
               {!isAuth ? (
                 <div
                   className='header__auth'
                   onClick={() => setMenuActive(false)}
                 >
                   <Link className='login auth' to='/login'>
-                    Login
+                    Увійти
                   </Link>
                   <Link className='sing_up auth button' to='/singup'>
-                    Sing Up
+                    Реєстрація
                   </Link>
                 </div>
               ) : (
@@ -102,8 +102,8 @@ function Header() {
                 </div>
               )}
 
-              <Link className="search-link" to='/search'>
-                <img className="search-img" src={search} alt='' />
+              <Link className='search-link' to='/search'>
+                <img className='search-img' src={search} alt='' />
               </Link>
             </div>
           </div>

@@ -1,7 +1,7 @@
 @import "../style/v";
 
 .card {
-  max-width: 635px;
+  max-width: 765px;
   margin: 0px 10px 20px 10px;
   border: 1px solid #000;
   @media(max-width: 940px){
@@ -14,7 +14,7 @@
 }
 .img {
   width: 100%;
-  max-height: 400px;
+  // max-height: 400px;
 }
 .card__content {
   padding: 10px 20px;
@@ -22,7 +22,6 @@
 .card__link {
   color: #000;
   transition: $tr_secont;
-  margin: 20px 0px 0px 0px;
 }
 .card__date-post {
   font-size: 12px;
