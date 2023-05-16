@@ -14,18 +14,15 @@
   &__warpper {
   }
   &__user {
-    background: $color_base;
+    background: $color_base; 
     padding: 20px 0px 20px 0px;
-    // min-height: 230px;
   }
   &__content {
-    display: flex;
-    align-items: center;
-    padding: 30px ;
+    text-align: center;
   }
   &__user-img {
     max-width: 150px;
-    margin: 0 50px 0 0 ;
+    margin: 0 0px 15px 0 ;
   }
   &__user-name {
     color: #fff;
@@ -34,9 +31,23 @@
 }
 .wrapper {
 }
+.wrapper-save-pages-content{
+  padding: 20px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+ &__title{
+  font-size: $fz_titel;
+  margin: 0px 0px 20px 0px;
+ }
+}
 .exid-btn {
   background: none;
   text-decoration: underline;
   font-size: $fz_base;
+  margin: 20px 0px 0px 0px;
+  &:hover{
+    text-decoration: none;
+  }
 }
 

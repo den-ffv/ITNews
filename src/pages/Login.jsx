@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import Singup from "./Singup";
-import ForgotPass from "./ForgotPass";
+// import ForgotPass from "./ForgotPass";
 import "../style/auth.scss";
 
 import { useForm } from "react-hook-form";
@@ -38,10 +38,10 @@ function Login() {
   if (isAuth) {
     return (
       <>
-        <PreLoader text={'Uncatch'}/>
+        <PreLoader text={"Uncatch"} />
         <Navigate to='/' />
       </>
-     )
+    );
   }
 
   return (
@@ -49,6 +49,7 @@ function Login() {
       <div>
         <section className='autorization'>
           <div className='autorization-continer container'>
+            <div className='autorization-stylization-circles'></div>
             <div className='autorization-block'>
               <div className='autorization-block__title'>Ласкаво просимо</div>
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +63,9 @@ function Login() {
                     placeholder='Логин'
                     {...register("email", { required: "Укажіть пошту" })}
                   />
-                  <div className='error-message'>{errors.email?.message}</div>
+                  <div className='error-message'>
+                    <p>{errors.email?.message}</p>
+                  </div>
                 </div>
                 <div className='autorization-box'>
                   <input
@@ -75,10 +78,10 @@ function Login() {
                     {...register("password", { required: "Укажіть пароль" })}
                   />
                   <div className='error-message'>
-                    {errors.password?.message}
+                    <p>{errors.password?.message}</p>
                   </div>
                 </div>
-                <button className='button-autorization button-autorization__margin button'>
+                <button className='button-autorization button-autorization__margin'>
                   увійти
                 </button>
               </form>
@@ -90,21 +93,21 @@ function Login() {
                   Зареєструватися
                 </Link>
               </div>
-              <div className='selection-entrance__password'>
+              {/* <div className='selection-entrance__password'>
                 <Link
                   to='/login/forgotpass'
                   className='selection-entrance__subtext'
                 >
                   Забули пароль?
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
       </div>
       <Routes>
         <Route path='/singup' element={<Singup />} />
-        <Route path='/login/forgotpass' element={<ForgotPass />} />
+        {/* <Route path='/login/forgotpass' element={<ForgotPass />} /> */}
       </Routes>
     </>
   );

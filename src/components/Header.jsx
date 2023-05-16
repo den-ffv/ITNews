@@ -55,16 +55,11 @@ function Header() {
                 ></div>
               </div>
             </nav>
-
             <div className='header__logo'>
-              {/* / */}
-
               <Link className='logo' to='/'>
                 <img src={logo} alt='' />
                 <p>Uncatch</p>
               </Link>
-
-              {/*  */}
             </div>
             <div className='header__nav'>
               <ul className='header__ul'>

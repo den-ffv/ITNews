@@ -14,13 +14,13 @@ $fz_mini-text:13px;
 @media(max-width: 420px){ 
   $fz_titel: 18px;
 }
-
+// border-radius
+$br-radius: 5px;
 
 // transition
 $tr_secont: 0.8s;
 
 // fonts
-
 $ff_base: "JetBrains Mono";
 $ff_titel: "Druk Cyr";
 $ff_text:'Source Code Pro', monospace;
