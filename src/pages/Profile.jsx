@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import "../style/Profile.scss";
 import userImg from "../img/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/auth";
 import { fetchAuthMe } from "../redux/slices/auth";
-
+import { getSavedPosts } from "../redux/slices/posts";
 import { useNavigate, Link } from "react-router-dom";
 import PreLoader from "../components/PreLoader";
+import SavePost from "../components/SavePost";
 
 function Profile() {
+  const dispatch = useDispatch();
   const histori = useNavigate();
-  const [isLoading, setLoading] = useState(true);
-  const isAuth = useSelector(selectIsAuth);
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
-  const isAdmin = user && user.role === 'admin';
+  const savedPosts = useSelector((state) => state.posts.savedPosts);
+  const isAuth = useSelector(selectIsAuth);
+  const isAdmin = user && user.role === "admin";
+  const [isLoading, setLoading] = useState(true);
+  console.log(savedPosts.length);
+  useEffect(() => {
+    dispatch(getSavedPosts());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isAdmin) {
@@ -28,7 +34,6 @@ function Profile() {
     }, 2000);
   }, []);
 
-  const dispatch = useDispatch();
   const onClickLogout = () => {
     if (window.confirm("Ви справді хочете вийти?")) {
       dispatch(logout());
@@ -36,11 +41,11 @@ function Profile() {
       histori("/");
     }
   };
-  if (!isAuth) {
+  if (!window.localStorage.getItem("token") && !isAuth) {
     return histori("/");
   }
   if (window.localStorage.getItem("token") && isLoading) {
-    return <PreLoader/>;
+    return <PreLoader />;
   }
 
   return (
@@ -49,6 +54,7 @@ function Profile() {
         <div className='profile__warpper'>
           <div className='wrapper profile__header'>
             <h1 className='profile__title'>Мiй Аккаунт</h1>
+            <p>Ви ввійшли як {user.email}</p>
             <button onClick={onClickLogout} className='exid-btn'>
               Вихiд
             </button>
@@ -70,14 +76,33 @@ function Profile() {
                     alt='user-img'
                   />
                 )}
-
                 <p className='profile__user-name'>{user.fullName}</p>
               </div>
             </div>
           </div>
         </div>
-        <div className='wrapper'>
+        <div className='wrapper wrapper-save-pages-content'>
           {/* тут будуть пости цього автора або вподобані пости */}
+          <h2 className='wrapper-save-pages-content__title'>
+            Усі Збережені Історії
+          </h2>
+          {/* Відображення збережених постів */}
+
+          {savedPosts.length === 0 ? (
+            <p>Останнім часом ви не зберігали жодної історії.</p>
+          ) : (
+            savedPosts.map((post) => (
+              <SavePost
+                key={post._id}
+                idPost={post._id}
+                title={post.title}
+                text={post.text}
+                img={post.imgeUrl ? `http://localhost:3001${post.imgeUrl}` : ""}
+                tag={post.tags}
+                postDate={post.createdAt}
+              />
+            ))
+          )}
         </div>
       </div>
     </>

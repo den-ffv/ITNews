@@ -11,7 +11,18 @@ export const fetchTags = createAsyncThunk("posts/fetchTags", async () => {
   return data;
 });
 
-export const fetchRemovePost = createAsyncThunk("posts/fetchRemovePost", async (id) => axios.delete(`/posts/${id}`));
+export const fetchRemovePost = createAsyncThunk(
+  "posts/fetchRemovePost",
+  async (id) => axios.delete(`/posts/${id}`)
+);
+
+export const getSavedPosts = createAsyncThunk(
+  "auth/getSavedPosts",
+  async () => {
+    const { data } = await axios.get("/saved-post");
+    return data;
+  }
+);
 
 const initialState = {
   posts: {
@@ -23,7 +34,6 @@ const initialState = {
     status: "loading",
   },
 };
-
 
 const postsSlice = createSlice({
   name: "posts",
@@ -56,10 +66,23 @@ const postsSlice = createSlice({
         state.tags.status = "error";
       })
       // delete
-      .addCase(fetchRemovePost.pending, (state,action) => {
-        state.posts.items = state.posts.items.filter(obj => obj._id !== action.payload)
+      .addCase(fetchRemovePost.pending, (state, action) => {
+        state.posts.items = state.posts.items.filter(
+          (obj) => obj._id !== action.payload
+        );
       })
+      .addCase(getSavedPosts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getSavedPosts.fulfilled, (state, action) => {
+        state.status = "loaded";
+        state.savedPosts = action.payload;
+      })
+      .addCase(getSavedPosts.rejected, (state) => {
+        state.status = "error";
+        state.savedPosts = [];
+      });
   },
 });
-
+export const selectSavedPosts = (state) => state.auth.savedPosts;
 export const posetsReducer = postsSlice.reducer;

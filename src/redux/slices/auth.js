@@ -16,7 +16,10 @@ export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
   return data;
 });
 
-
+// export const getSavedPosts = createAsyncThunk("auth/getSavedPosts", async () => {
+//   const { data } = await axios.get("/saved-post");
+//   return data;
+// });
 
 
 const initialState = {
@@ -69,10 +72,22 @@ const authSlice = createSlice({
       .addCase(fetchRegister.rejected, (state) => {
         state.status = "error";
         state.data = null;
-      });
+      })
+      // .addCase(getSavedPosts.pending, (state) => {
+      //   state.status = "loading";
+      // })
+      // .addCase(getSavedPosts.fulfilled, (state, action) => {
+      //   state.status = "loaded";
+      //   state.savedPosts = action.payload;
+      // })
+      // .addCase(getSavedPosts.rejected, (state) => {
+      //   state.status = "error";
+      //   state.savedPosts = [];
+      // });
   },
 });
 export const selectIsAuth = (state) => Boolean(state.auth.data);
+// export const selectSavedPosts = (state) => state.auth.savedPosts;
 
 export const authReducer = authSlice.reducer;
 

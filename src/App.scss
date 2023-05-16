@@ -53,7 +53,7 @@ body {
   background: $color_base;
   padding: 10px 15px 10px 15px;
   border: 1px solid $color_base;
-  border-radius: 5px;
+  border-radius: $br-radius;
   color: #fff;
   transition: $tr_secont;
   &:hover {

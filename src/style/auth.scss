@@ -2,16 +2,116 @@
 
 /*-------------------------------autorization----------------------------------------*/
 .autorization {
+  position: relative;
   padding: 120px 0 50px 0;
+  margin: 0px 10px 0px 10px;
+}
+.autorization-stylization-circles {
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  @media (max-width: 510px) {
+    width: 310px;
+  }
+  &::after {
+    content: "";
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    right: 10%;
+
+    position: absolute;
+    background: linear-gradient(91deg, #8433b1 10%, #00beac 100%);
+    animation: upDownAnimation 5s ease-in-out infinite;
+  }
+  &::before {
+    content: "";
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    left: -20%;
+
+    position: absolute;
+    background: linear-gradient(91deg, #3371b1 10%, #00be00 100%);
+    animation: upDownAnimationTwo 6s ease-in-out infinite;
+    @media (max-width: 490px) {
+      left: -10%;
+      top: 50%;
+    }
+  }
+}
+.autorization-stylization-circles-two {
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  @media (max-width: 510px) {
+    width: 310px;
+  }
+  &::after {
+    content: "";
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    left: -20%;
+    bottom: 10%;
+    position: absolute;
+    background: linear-gradient(90deg, #7d12cf 0%, #3de43d 80%);
+    animation: upDownAnimationTwo 7s ease-in-out infinite;
+
+  }
+  &::before {
+    content: "";
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    right: 5%;
+    top: -5%;
+    position: absolute;
+    background: linear-gradient(90deg, #3b63da 0%, #3de4af 80%);
+    animation: upDownAnimation 5s ease-in-out infinite;
+    @media (max-width: 510px) {
+      width: 200px;
+      height: 200px;
+      right: 5%;
+      top: 5%;
+    }
+  }
+}
+@keyframes upDownAnimation {
+  0%, 100% {
+    top: 0;
+  }
+  50% {
+    top: 30px;
+  }
+}
+@keyframes upDownAnimationTwo {
+  0%, 100% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 0px;
+  }
 }
 
 .autorization-block {
-  background: #fdfdfd;
-  box-shadow: 0px 7px 64px rgba(80, 77, 92, 0.1);
-  border-radius: 10px;
+  background: #eae8e8ad;
   padding: 40px;
   max-width: 480px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.192);
+  backdrop-filter: blur(10px);
+  border-radius: $br-radius;
+  border: 1px solid rgba(43, 43, 43, 0.568);
+  @media (max-width: 490px) {
+    padding: 20px;
+  }
 }
 
 .autorization-block__title {
@@ -23,23 +123,23 @@
   text-align: center;
 }
 
-
 .error-message {
-  color: rgb(195, 1, 1);
-  margin-bottom: 10px;
-  font-size: 12px;
+  color: rgb(217, 0, 0);
+  margin: 0 0 15px 10px;
+  font-family: $ff_text;
+  font-size: 14px;
 }
 
 /*-------------------------------button-autorization----------------------------------------*/
 .button-autorization {
-  background: $color_two;
-  border-radius: 4.8px;
+  background: $color_base;
+  border-radius: $br-radius;
   width: 100%;
   padding: 20px 0;
   font-size: $fz_base;
   color: #fff;
-  padding: 15px 0;
-  border: 1px solid $color_two;
+  padding: 10px 0;
+  border: 1px solid $color_base;
   text-transform: uppercase;
   transition: $tr_secont;
 }
@@ -56,7 +156,7 @@
 
 .button-autorization:active {
   border: 1px solid rgb(102, 98, 98);
-  background: #fff;
+  background: #c5c5c5d1;
   color: rgb(102, 98, 98);
 }
 
@@ -92,7 +192,7 @@
 }
 
 .autorization__box-input {
-  border-radius: 5px;
+  border-radius: $br-radius;
   border: 1px solid rgba(0, 0, 0, 0.87);
   padding: 10px;
   background: #fff;
@@ -101,6 +201,9 @@
   font-size: 14px;
   width: 100%;
   margin-bottom: 8px;
+  background: #eae8e8ad;
+  background: rgba(255, 255, 255, 0.192);
+  backdrop-filter: blur(10px);
 }
 
 .autorization-box input:valid,

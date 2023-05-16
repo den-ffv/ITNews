@@ -4,17 +4,12 @@ import { selectIsAuth, fetchRegister } from "../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import PreLoader from '../components/PreLoader';
+import PreLoader from "../components/PreLoader";
 
 function Singup() {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors, isValid },
-  } = useForm({
+  const { register, handleSubmit, setError, formState: { errors, isValid },} = useForm({
     defaultValues: {
       fullName: "Seimon",
       email: "seimon@email.com",
@@ -25,7 +20,7 @@ function Singup() {
   if (isAuth) {
     return (
       <>
-        <PreLoader text={"Uncatch"} />
+        <PreLoader />
         <Navigate to='/' />
       </>
     );
@@ -47,6 +42,7 @@ function Singup() {
       <div>
         <section className='autorization'>
           <div className='autorization-continer container'>
+            <div className='autorization-stylization-circles-two'></div>
             <div className='autorization-block'>
               <div className='autorization-block__title'>
                 Створіть обліковий запис
@@ -100,20 +96,20 @@ function Singup() {
                   увійти
                 </button>
               </form>
-              <div className='selection-entrance'>
+              {/* <div className='selection-entrance'>
                 <p className='selection-entrance__text selection-entrance__text-grey'>
                   Відправляючи форму, ви погоджуєтеся з тим, що
+                  <a href='#' className='selection-entrance__subtext'>
+                    {" "}
+                    Умови використання{" ,"}
+                  </a>
+                  <a href='#' className='selection-entrance__subtext'>
+                    {" "}
+                    Політика конфіденційності
+                  </a>
                 </p>
               </div>
-              <div className='selection-entrance__password'>
-                <a href='#' className='selection-entrance__subtext'>
-                  Умови використання{" "}
-                </a>
-                <a href='#' className='selection-entrance__subtext'>
-                  {" "}
-                  Політика конфіденційності
-                </a>
-              </div>
+              <div className='selection-entrance__password'></div> */}
             </div>
           </div>
         </section>
