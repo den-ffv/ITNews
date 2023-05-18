@@ -24,6 +24,13 @@ export const getSavedPosts = createAsyncThunk(
   }
 );
 
+export const updateSavedPosts = (updatedPosts) => {
+  return {
+    type: 'UPDATE_SAVED_POSTS',
+    payload: updatedPosts,
+  };
+};
+
 const initialState = {
   posts: {
     items: [],
@@ -81,6 +88,9 @@ const postsSlice = createSlice({
       .addCase(getSavedPosts.rejected, (state) => {
         state.status = "error";
         state.savedPosts = [];
+      })
+      .addCase('UPDATE_SAVED_POSTS', (state, action) => {
+        state.savedPosts = action.payload;
       });
   },
 });

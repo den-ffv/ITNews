@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../axios";
@@ -6,19 +6,31 @@ import { fetchAuthMe } from "../redux/slices/auth";
 import { fetchRemovePost } from "../redux/slices/posts";
 import { getUserDate } from "../utils/createDate";
 import { minutReadFullPost } from "../utils/minutRead";
-import { FacebookShareButton, TwitterShareButton, LinkedinShareButton,} from "react-share";
-import view from "../img/view.png";
-import twitter from "../img/twitter.png";
-import facebook from "../img/facebook.png";
-import linkedin from "../img/linkedin.png";
-import saveOn from "../img/save-on.png"
-import saveOff from "../img/save-off.png"
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+} from "react-share";
+import view from "../img/view.svg";
+import twitter from "../img/twitter.svg";
+import facebook from "../img/facebook.svg";
+import linkedin from "../img/linkedin.svg";
+import saveOn from "../img/save-on.png";
+import saveOff from "../img/save-off.png";
 import "./FullPost.scss";
 // import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-function FullPost({ title, text, img, tag, postData, userName, idPost, views,}) {
-
+function FullPost({
+  title,
+  text,
+  img,
+  tag,
+  postData,
+  userName,
+  idPost,
+  views,
+}) {
   const navigate = useNavigate();
   const disparch = useDispatch();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
@@ -33,12 +45,32 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views,}) 
     navigate(`/add-post/${idPost}/edit`);
   };
 
-  // const handleSavePost = async () => {
+  // const [isSaved, setIsSaved] = useState(false);
+
+  // useEffect(() => {
+  //   checkPostSavedStatus();
+  // }, [idPost]);
+
+  // const checkPostSavedStatus = async () => {
   //   try {
-  //     await axios.post(`/posts/${idPost}/save`);
+  //     const response = await axios.get(`/saved-post`);
+  //     setIsSaved(response.data.saved);
   //   } catch (error) {
   //     console.log(error);
-  //     alert(error)
+  //   }
+  // };
+
+  // const handleSavePost = async () => {
+  //   try {
+  //     if (isSaved) {
+  //       await axios.delete(`/posts/${idPost}/remove`);
+  //       setIsSaved(false);
+  //     } else {
+  //       await axios.post(`/posts/${idPost}/save`);
+  //       setIsSaved(true);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
   //   }
   // };
 
@@ -50,8 +82,8 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views,}) 
 
   const checkPostSavedStatus = async () => {
     try {
-      const response = await axios.get(`/saved-post`);
-      setIsSaved(response.data.saved);
+      const savedPosts = JSON.parse(localStorage.getItem("savedPosts")) || [];
+      setIsSaved(savedPosts.includes(idPost));
     } catch (error) {
       console.log(error);
     }
@@ -61,9 +93,11 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views,}) 
     try {
       if (isSaved) {
         await axios.delete(`/posts/${idPost}/remove`);
+        removePostFromLocalStorage(idPost);
         setIsSaved(false);
       } else {
         await axios.post(`/posts/${idPost}/save`);
+        savePostToLocalStorage(idPost);
         setIsSaved(true);
       }
     } catch (error) {
@@ -71,39 +105,64 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views,}) 
     }
   };
 
+  const savePostToLocalStorage = (postId) => {
+    const savedPosts = JSON.parse(localStorage.getItem("savedPosts")) || [];
+    savedPosts.push(postId);
+    localStorage.setItem("savedPosts", JSON.stringify(savedPosts));
+  };
+
+  const removePostFromLocalStorage = (postId) => {
+    const savedPosts = JSON.parse(localStorage.getItem("savedPosts")) || [];
+    const updatedSavedPosts = savedPosts.filter((id) => id !== postId);
+    localStorage.setItem("savedPosts", JSON.stringify(updatedSavedPosts));
+  };
+
   return (
     <>
       <div className='full-post__wrapper'>
-        <Link to={`/category/${tag}`} className='mini-text'>
+        <Link  to={`/category/${tag}`} className='full-post__tags'>
           {tag}
         </Link>
         <h1 className='full-post__title title'>{title}</h1>
         {!img ? "" : <img className='full-post__img' src={img} alt='img' />}
         <div className='text-conteiner'>
-          <div className='data-conteiner'>
-            <p className='mini-text'>{getUserDate(postData)}</p>
-            <p className='mini-text'>{minutReadFullPost(text)}</p>
-            <img className='img-view' src={view} alt='view' />
-            <p className='mini-text'>{views}</p>
-          </div>
-          <div className='full-post__text'>
-            {text}
-          </div>
-          <FacebookShareButton url={img} quote={title}>
-            <img className='likn-social-maras' src={facebook} alt='' />
-          </FacebookShareButton>
+          <div >
+            <div className='data-conteiner'>
+              <p className='mini-text'>{getUserDate(postData)}</p>
+              <p className='mini-text'>{minutReadFullPost(text)}</p>
+              <div className="view-conteiner">
+              <img className='img-view' src={view} alt='view' />
+              <p className='mini-text'>{views}</p>
+              </div>
+            </div>
 
-          <TwitterShareButton url={img} title={title}>
-            <img className='likn-social-maras' src={twitter} alt='' />
-          </TwitterShareButton>
-
-          <LinkedinShareButton url={img} title={title}>
-            <img className='likn-social-maras' src={linkedin} alt='' />
-          </LinkedinShareButton>
-  
-          <button  onClick={handleSavePost}>
-            {isSaved ? (<img className='likn-social-maras' src={saveOn} alt="" />): (<img className='likn-social-maras' src={saveOff} alt="" />)}
-          </button>
+            <div className='share-content'>
+            <button className='likn-social-maras' onClick={handleSavePost}>
+                {isSaved ? (
+                  <img  src={saveOn} alt='cancel' />
+                ) : (
+                  <img  src={saveOff} alt='save' />
+                )}
+              </button>
+              <div className='likn-social-maras'>
+              <FacebookShareButton  url={img} quote={title}>
+                <img src={facebook} alt="facebook" />
+              </FacebookShareButton>
+              </div>
+              <div  className='likn-social-maras'>
+                <TwitterShareButton url={img} title={title}>
+                  <img  src={twitter} alt='twitter' />
+                </TwitterShareButton>
+              </div>
+              <div className='likn-social-maras'>
+                <LinkedinShareButton url={img} title={title}>
+                  <img  src={linkedin} alt='linkedin' />
+                </LinkedinShareButton>
+              </div>
+           
+            </div>
+          </div>
+          <div className='full-post__text'>{text}</div>
         </div>
         {/* <p>{userName}</p> */}
         {isAdmin ? (

@@ -5,7 +5,6 @@
   max-height: 180px;
   margin: 0px 10px 20px 10px;
   border: 1px solid $color_base;
-  // .post-card__img
 
   &__img {
     max-width: 300px;
@@ -27,9 +26,7 @@
   }
 }
 .mini-text {
-  padding: 0px 20px 0px 0px;
   color: $color_base;
-  text-transform: uppercase;
 }
 @media (max-width: 690px) {
   .post-card {

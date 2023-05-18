@@ -5,21 +5,23 @@ import "./MiniPost.scss";
 import { getUserDate } from "../utils/createDate";
 import { minutRead } from "../utils/minutRead";
 import axios from "../axios";
-function SavePost({ idPost, title, text, img, tag, postDate, user }) {
+import saveOn from "../img/save-on.png";
+function SavePost({ idPost, title, text, img, tag, postDate, user, deletePost }) {
   const truncateLengthTitle = 120;
   const truncatedTitle =
     title.length > truncateLengthTitle
       ? title.substring(0, truncateLengthTitle) + "..."
       : title;
-      const [isSaved, setIsSaved] = useState(false);
-  const handleSavePost = async () => {
-    try {
-      await axios.delete(`/posts/${idPost}/remove`);
-      setIsSaved(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  // const [isSaved, setIsSaved] = useState(false);
+  // const handleSavePost = async () => {
+  //   try {
+  //     await axios.delete(`/posts/${idPost}/remove`);
+  //     setIsSaved(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -38,7 +40,9 @@ function SavePost({ idPost, title, text, img, tag, postDate, user }) {
             </div>
           </div>
         </Link>
-            <button onClick={handleSavePost}>bell</button>
+        <button className='likn-social-maras' onClick={deletePost}>
+          <img src={saveOn} alt='cancel' />
+        </button>
       </div>
     </div>
   );

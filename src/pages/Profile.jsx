@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../style/Profile.scss";
 import userImg from "../img/user.png";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/auth";
 import { fetchAuthMe } from "../redux/slices/auth";
@@ -8,6 +9,8 @@ import { getSavedPosts } from "../redux/slices/posts";
 import { useNavigate, Link } from "react-router-dom";
 import PreLoader from "../components/PreLoader";
 import SavePost from "../components/SavePost";
+import axios  from '../axios';
+import { updateSavedPosts } from "../redux/slices/posts";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -17,22 +20,17 @@ function Profile() {
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = user && user.role === "admin";
   const [isLoading, setLoading] = useState(true);
-  console.log(savedPosts.length);
   useEffect(() => {
     dispatch(getSavedPosts());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isAdmin) {
-      console.log(isAdmin);
-    }
-  }, [isAdmin]);
-
-  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1500);
   }, []);
+
+
 
   const onClickLogout = () => {
     if (window.confirm("Ви справді хочете вийти?")) {
@@ -41,6 +39,23 @@ function Profile() {
       histori("/");
     }
   };
+  const handleSavePost = async (postId) => {
+    try {
+      await axios.delete(`/posts/${postId}/remove`);
+      const updatedPosts = savedPosts.filter((post) => post._id !== postId);
+      removePostFromLocalStorage(postId);
+      dispatch(updateSavedPosts(updatedPosts));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const removePostFromLocalStorage = (postId) => {
+    const savedPosts = JSON.parse(localStorage.getItem('savedPosts')) || [];
+    const updatedSavedPosts = savedPosts.filter((id) => id !== postId);
+    localStorage.setItem('savedPosts', JSON.stringify(updatedSavedPosts));
+  };
+
+
   if (!window.localStorage.getItem("token") && !isAuth) {
     return histori("/");
   }
@@ -100,6 +115,7 @@ function Profile() {
                 img={post.imgeUrl ? `http://localhost:3001${post.imgeUrl}` : ""}
                 tag={post.tags}
                 postDate={post.createdAt}
+                deletePost={() => handleSavePost(post._id)}
               />
             ))
           )}
