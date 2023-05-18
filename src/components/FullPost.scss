@@ -1,68 +1,78 @@
 @import "../style/v";
 
 .full-post {
-
   &__wrapper {
-    max-width: 930px;
-    margin: 30px auto 30px auto;
-    // border: 1px solid $color_base;
-    padding: 30px 50px 30px 50px;
-    @media(max-width: 860px){
-      padding: 30px 40px 30px 40px;
+
+    margin: 30px 0 30px 0;
+
+    @media (max-width: 860px) {
+      // padding: 30px 40px 30px 40px;
     }
-    @media(max-width: 420px){
-      padding: 30px 20px 30px 20px;
+    @media (max-width: 420px) {
+      // padding: 30px 20px 30px 20px;
     }
   }
   &__content {
   }
-  &__img{
+  &__img {
     width: 100%;
     margin: 0px 0px 30px 0px;
   }
-  &__title{
-    font-size: $fz_bg-titel;
+  &__title {
+    font-size: 50px;
+    padding: 0px 15px 0px 15px;
+    text-align: center;
     margin: 30px 0px 20px 0px;
-    &:hover{
+    &:hover {
       text-decoration: none;
     }
   }
-  
-  &__text{
+  &__tags{
+    display: block;
+    text-transform: uppercase;
+    text-decoration:underline;
+    text-align: center;
+    color: $color_activ;
+
+  }
+
+  &__text {
     font-family: $ff_text;
-    font-size: $fz_base;
+
+    font-size: 1.25rem;
+    line-height: 160%;
+    // padding: 0px 15px 0px 15px;
     margin: 15px 0px 15px 0px;
-    h1{
+    h1 {
       font-size: $fz_bg-titel;
     }
-    h2{
+    h2 {
       font-size: $fz_titel;
     }
-    h3{
+    h3 {
       font-size: $fz_titel;
     }
-    h4{
+    h4 {
       font-size: $fz_base;
     }
-    strong{
+    strong {
       font-family: $ff_base;
       font-weight: 700;
       font-size: 18px;
     }
-    p{
-      margin: 16px 0px 16px 0px;
-      line-height: 19px;
+    p {
+      margin: 30px 0px 30px 0px;
     }
-    a{
+    a {
       color: $color_two;
-      &:hover{
+      &:hover {
         text-decoration: underline;
       }
     }
-    img{
+    img {
       width: 100%;
     }
-    pre{
+    pre {
       background: #eff1f3cc;
       border: 1px solid #b6b6b6;
       border-radius: 5px;
@@ -73,7 +83,7 @@
       width: 100%;
       overflow-x: scroll;
     }
-    code{
+    code {
       background: #eff1f3cc;
       padding: 5px 5px;
       margin: 10px 0px 0px 0px;
@@ -81,51 +91,98 @@
       font-weight: 400;
       border-radius: 8px;
       line-height: 25px;
- 
     }
-    ol{
+    ol {
       padding: 10px 0;
       margin: 0px 0px 0px 30px;
-      li{
+      li {
         list-style-type: number;
         margin: 3px 0px 3px 0px;
-        
       }
     }
-    ul{
+    ul {
       margin: 0px 0px 0px 15px;
       padding: 10px 0;
-      li{
+      li {
         list-style-type: disc;
         margin: 3px 0px 3px 0px;
       }
     }
   }
 }
-.likn-social-maras{
-  width: 30px;
-  margin: 5px;
+.share-content {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px 0px 0px;
+}
+.likn-social-maras {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color_base;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   transition: $tr_secont;
-  &:hover{
-    background: #52525264;
-    border-radius: 4px;
+  background-color: transparent;
+  margin: 0px 5px 0px 5px;
+  &:hover {
     transition: $tr_secont;
+    border: 1px solid $color_activ;
+  }
+  &:active {
+    background: #b4b4b48c;
+  }
+
+  img {
+    width: 20px;
+    background-color: transparent;
   }
 }
-.data-conteiner{
+.data-conteiner {
   display: flex;
-  margin: 5px 0px 5px 0px;
-  align-items:center;
-  .img-view{
+  justify-content: center;
+  margin: 5px 0px 15px 0px;
+  align-items: center;
+  .view-conteiner{
+    display: flex;
+    align-items:center;
+  }
+  .img-view {
     width: 20px;
     margin: 0px 6px 0px 0px;
   }
-  p{
+  p {
     margin: 0px 10px 0px 0px;
-    color: rgb(155, 155, 155);
+    padding: 0 10px;
+    border-right: 1px solid $color_base;
+  }
+  p:last-child {
+    border: 0px;
   }
 }
-.text-conteiner{
+@media (max-width: 380px) {
+  .data-conteiner {
+    display: block;
+    margin: 5px 0px 15px 0px;
+    text-align: center;
+    .view-conteiner{
+      justify-content: center;
+    }
+    .img-view {
+      width: 20px;
+      margin: 0px 6px 10px 0px;
+    }
+    p {
+      margin: 0px 0px 10px 0px;
+      border: 0px;
+    }
+    p:last-child {
+      border: 0px;
+    }
+  }
+}
+.text-conteiner {
   max-width: 600px;
   padding: 0px 10px 0px 10px;
   margin: 0 auto;
