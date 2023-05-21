@@ -27,6 +27,8 @@
 }
 .mini-text {
   color: $color_base;
+  display: flex;
+  align-items: center;
 }
 @media (max-width: 690px) {
   .post-card {

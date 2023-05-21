@@ -1,20 +1,20 @@
 @import "./v";
 .profile {
   margin: 70px 0px 0px 0px;
-  &__title{
+  &__title {
     font-size: $fz_bg-titel;
     color: $color_base;
     margin: 0px 0px 20px 0px;
     text-align: center;
   }
-  &__header{
+  &__header {
     text-align: center;
     padding: 0px 0px 50px 0px;
   }
   &__warpper {
   }
   &__user {
-    background: $color_base; 
+    background: $color_base;
     padding: 20px 0px 20px 0px;
   }
   &__content {
@@ -22,32 +22,56 @@
   }
   &__user-img {
     max-width: 150px;
-    margin: 0 0px 15px 0 ;
+    margin: 0 0px 15px 0;
   }
   &__user-name {
     color: #fff;
     font-size: $fz_titel;
   }
 }
-.wrapper {
-}
-.wrapper-save-pages-content{
-  padding: 20px 0px 0px 0px;
+.wrapper-save-pages-content {
+  padding: 100px 0px 150px 0px;
   display: flex;
   flex-direction: column;
-  align-items:center;
- &__title{
-  font-size: $fz_titel;
-  margin: 0px 0px 20px 0px;
- }
+  align-items: center;
+  text-align: center;
+  &__title {
+    font-size: $fz_titel;
+    margin: 0px 0px 40px 0px;
+  }
+}
+.save-post-content {
+  display: flex;
+  justify-content: end;
+  margin: 10px;
+  .save-post-button {
+    background: transparent;
+    &__img {
+      width: 30px;
+    }
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.seved-post {
+    position: relative;
+    animation: fadeOut 1s forwards;
 }
 .exid-btn {
   background: none;
   text-decoration: underline;
   font-size: $fz_base;
   margin: 20px 0px 0px 0px;
-  &:hover{
+  &:hover {
     text-decoration: none;
   }
 }
-

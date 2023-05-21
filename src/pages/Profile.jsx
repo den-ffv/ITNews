@@ -16,20 +16,17 @@ function Profile() {
   const dispatch = useDispatch();
   const histori = useNavigate();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
-  const savedPosts = useSelector((state) => state.posts.savedPosts);
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = user && user.role === "admin";
   const [isLoading, setLoading] = useState(true);
-  useEffect(() => {
-    dispatch(getSavedPosts());
-  }, [dispatch]);
+  const savedPosts = useSelector((state) => state.posts.savedPosts);
 
   useEffect(() => {
+    dispatch(getSavedPosts());
     setTimeout(() => {
       setLoading(false);
     }, 1500);
-  }, []);
-
+  }, [dispatch]);
 
 
   const onClickLogout = () => {
@@ -39,12 +36,18 @@ function Profile() {
       histori("/");
     }
   };
+
+  const [deletingPostId, setDeletingPostId] = useState(null);
   const handleSavePost = async (postId) => {
     try {
+      setDeletingPostId(postId);
       await axios.delete(`/posts/${postId}/remove`);
-      const updatedPosts = savedPosts.filter((post) => post._id !== postId);
-      removePostFromLocalStorage(postId);
-      dispatch(updateSavedPosts(updatedPosts));
+      setTimeout(() => {
+        const updatedPosts = savedPosts.filter((post) => post._id !== postId);
+        removePostFromLocalStorage(postId);
+        dispatch(updateSavedPosts(updatedPosts));
+        setDeletingPostId(null);
+      }, 1000)
     } catch (error) {
       console.log(error);
     }
@@ -116,6 +119,7 @@ function Profile() {
                 tag={post.tags}
                 postDate={post.createdAt}
                 deletePost={() => handleSavePost(post._id)}
+                isDeleting = {deletingPostId === post._id}
               />
             ))
           )}

@@ -43,12 +43,12 @@ function Menu({ items, active, setActive }) {
               <div>
                 <li className='menu__list'>
                   <Link className='menu__link' to='/login'>
-                    Login
+                    Увійти
                   </Link>
                 </li>
                 <li className='menu__list'>
                   <Link className='menu__link' to='/singup'>
-                    Sing Up
+                    Реєстрація
                   </Link>
                 </li>
               </div>

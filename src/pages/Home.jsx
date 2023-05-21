@@ -48,7 +48,7 @@ function Home() {
   return (
     <>
       <div className='home__wrapper wrapper'>
-        <>
+        <div className="cards-new-and-populer-wrappper">
           <div className='cards-new'>
             <p className='cards-header-text'>нові</p>
             <div className='carts'>
@@ -95,39 +95,38 @@ function Home() {
               />
             ))}
           </div>
-
-          <div className='cards__wrapper cards-all__wrapper'>
-            <div className='cards-all'>
-              <p className='cards-header-text'>всі публікації</p>
-              {currentPosts.slice(3).map((obj, index) => (
-                <Post
-                  key={obj._id}
-                  idPost={obj._id}
-                  title={obj.title}
-                  text={obj.text}
-                  img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
-                  tag={obj.tags}
-                  postDate={obj.createdAt}
-                />
-              ))}
-            </div>
-            <div className='tags-conteiner'>
-              <h2>Теги</h2>
-              <ul>
-                {uniqueTags.map((tag) => (
-                  <li key={tag}>
-                    <Link to={`/category/${tag}`}>{tag}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        </div>
+        <div className='cards__wrapper cards-all__wrapper'>
+          <div className='cards-all'>
+            <p className='cards-header-text'>всі публікації</p>
+            {currentPosts.slice(3).map((obj, index) => (
+              <Post
+                key={obj._id}
+                idPost={obj._id}
+                title={obj.title}
+                text={obj.text}
+                img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                tag={obj.tags}
+                postDate={obj.createdAt}
+              />
+            ))}
           </div>
-          {currentPosts.length < posts.items.length && (
-            <div className='load-more-button'>
-              <button onClick={handleLoadMore}>Дивитись більше</button>
-            </div>
-          )}
-        </>
+          <div className='tags-conteiner'>
+            <h2>Теги</h2>
+            <ul>
+              {uniqueTags.map((tag) => (
+                <li key={tag}>
+                  <Link to={`/category/${tag}`}>{tag}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        {currentPosts.length < posts.items.length && (
+          <div className='load-more-button'>
+            <button onClick={handleLoadMore}>Дивитись більше</button>
+          </div>
+        )}
       </div>
     </>
   );

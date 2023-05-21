@@ -15,11 +15,11 @@
 
   &__logo {
     
-    .logo{
-      font-size: 20px;
-      display: flex;
-    align-items: center;
-    }
+    // .logo{
+    //   font-size: 20px;
+    //   display: flex;
+    // align-items: center;
+    // }
   }
   &__nav {
   }
@@ -54,6 +54,11 @@
       color: $color_activ;
     }
   }
+}
+.logo{
+  font-size: 20px;
+  display: flex;
+align-items: center;
 }
 // button menu
 .burger-menu {

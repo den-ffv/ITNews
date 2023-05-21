@@ -57,8 +57,8 @@ function Category() {
           ))}
         </div>
         <div className='carts'>
-          {currentPosts.slice(1, 3).map((obj) => (
-            <MiniPost
+          {currentPosts.slice(1, 4).map((obj) => (
+            <Post
               key={obj._id}
               idPost={obj._id}
               title={obj.title}
@@ -72,7 +72,7 @@ function Category() {
         </div>
       </div>
       <div className='carts'>
-        {currentPosts.slice(3).map((obj, index) => (
+        {currentPosts.slice(4).map((obj, index) => (
           <Post
             key={obj._id}
             idPost={obj._id}
