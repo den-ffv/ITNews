@@ -5,7 +5,12 @@ import { getUserDate } from "../utils/createDate";
 import { minutRead } from "../utils/minutRead";
 function Post({ idPost, title, text, img, tag, postDate, user }) {
   return (
+<<<<<<< HEAD
     <Link className='card__link' to={`/fullpost/${idPost}`}>
+=======
+    // <div className="card__link">
+        <Link className='card__link' to={`/fullpost/${idPost}`}>
+>>>>>>> main
       <div className='post-card'>
         <div className='post-card__img'>
           <img src={img} alt='' />
@@ -21,7 +26,12 @@ function Post({ idPost, title, text, img, tag, postDate, user }) {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
     </Link>
+=======
+        </Link>
+    // </div>
+>>>>>>> main
   );
 }
 

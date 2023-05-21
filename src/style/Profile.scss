@@ -14,7 +14,7 @@
   &__warpper {
   }
   &__user {
-    background: $color_base;
+    background: $color_base; 
     padding: 20px 0px 20px 0px;
   }
   &__content {
@@ -22,7 +22,11 @@
   }
   &__user-img {
     max-width: 150px;
+<<<<<<< HEAD
     margin: 0 0px 15px 0;
+=======
+    margin: 0 0px 15px 0 ;
+>>>>>>> main
   }
   &__user-name {
     color: #fff;
@@ -66,12 +70,26 @@
     position: relative;
     animation: fadeOut 1s forwards;
 }
+.wrapper-save-pages-content{
+  padding: 20px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+ &__title{
+  font-size: $fz_titel;
+  margin: 0px 0px 20px 0px;
+ }
+}
 .exid-btn {
   background: none;
   text-decoration: underline;
   font-size: $fz_base;
   margin: 20px 0px 0px 0px;
+<<<<<<< HEAD
   &:hover {
+=======
+  &:hover{
+>>>>>>> main
     text-decoration: none;
   }
 }

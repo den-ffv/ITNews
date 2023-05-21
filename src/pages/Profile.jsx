@@ -16,19 +16,36 @@ function Profile() {
   const dispatch = useDispatch();
   const histori = useNavigate();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
+<<<<<<< HEAD
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = user && user.role === "admin";
   const [isLoading, setLoading] = useState(true);
   const savedPosts = useSelector((state) => state.posts.savedPosts);
+=======
+  const savedPosts = useSelector((state) => state.posts.savedPosts);
+  const isAuth = useSelector(selectIsAuth);
+  const isAdmin = user && user.role === "admin";
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    dispatch(getSavedPosts());
+  }, [dispatch]);
+>>>>>>> main
 
   useEffect(() => {
     dispatch(getSavedPosts());
     setTimeout(() => {
       setLoading(false);
     }, 1500);
+<<<<<<< HEAD
   }, [dispatch]);
 
 
+=======
+  }, []);
+
+
+
+>>>>>>> main
   const onClickLogout = () => {
     if (window.confirm("Ви справді хочете вийти?")) {
       dispatch(logout());
@@ -36,6 +53,7 @@ function Profile() {
       histori("/");
     }
   };
+<<<<<<< HEAD
 
   const [deletingPostId, setDeletingPostId] = useState(null);
   const handleSavePost = async (postId) => {
@@ -48,6 +66,14 @@ function Profile() {
         dispatch(updateSavedPosts(updatedPosts));
         setDeletingPostId(null);
       }, 1000)
+=======
+  const handleSavePost = async (postId) => {
+    try {
+      await axios.delete(`/posts/${postId}/remove`);
+      const updatedPosts = savedPosts.filter((post) => post._id !== postId);
+      removePostFromLocalStorage(postId);
+      dispatch(updateSavedPosts(updatedPosts));
+>>>>>>> main
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +145,10 @@ function Profile() {
                 tag={post.tags}
                 postDate={post.createdAt}
                 deletePost={() => handleSavePost(post._id)}
+<<<<<<< HEAD
                 isDeleting = {deletingPostId === post._id}
+=======
+>>>>>>> main
               />
             ))
           )}

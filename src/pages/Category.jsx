@@ -57,8 +57,13 @@ function Category() {
           ))}
         </div>
         <div className='carts'>
+<<<<<<< HEAD
           {currentPosts.slice(1, 4).map((obj) => (
             <Post
+=======
+          {currentPosts.slice(1, 3).map((obj) => (
+            <MiniPost
+>>>>>>> main
               key={obj._id}
               idPost={obj._id}
               title={obj.title}
@@ -72,7 +77,11 @@ function Category() {
         </div>
       </div>
       <div className='carts'>
+<<<<<<< HEAD
         {currentPosts.slice(4).map((obj, index) => (
+=======
+        {currentPosts.slice(3).map((obj, index) => (
+>>>>>>> main
           <Post
             key={obj._id}
             idPost={obj._id}

@@ -20,7 +20,11 @@ export const getSavedPosts = createAsyncThunk(
   "auth/getSavedPosts",
   async () => {
     const { data } = await axios.get("/saved-post");
+<<<<<<< HEAD
     return data.reverse();
+=======
+    return data;
+>>>>>>> main
   }
 );
 
