@@ -21,11 +21,11 @@ function Footer() {
               <p>Uncatch</p>
             </Link>
           </div>
-          <div className='footer__nav'>
+          {/* <div className='footer__nav'>
             <li>Store</li>
             <li>About</li>
             <li>Contact</li>
-          </div>
+          </div> */}
           </div>
           <div className='social-networks'>
             <a className='social-networks__link' href='https://twitter.com/wwwofficial1'  target="_blank">

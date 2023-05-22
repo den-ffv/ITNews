@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "../style/Profile.scss";
-import userImg from "../img/user.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/auth";
@@ -81,19 +80,7 @@ function Profile() {
           <div className='profile__user'>
             <div className='wrapper'>
               <div className='profile__content'>
-                {user.avatarUrl ? (
-                  <img
-                    className='profile__user-img'
-                    src={user.avatarUrl}
-                    alt='user-img'
-                  />
-                ) : (
-                  <img
-                    className='profile__user-img'
-                    src={userImg}
-                    alt='user-img'
-                  />
-                )}
+        
                 <p className='profile__user-name'>{user.fullName}</p>
               </div>
             </div>
