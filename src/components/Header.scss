@@ -14,9 +14,8 @@
   }
 
   &__logo {
-    
     // .logo{
-    //   font-size: 20px;
+    //   font-size: 22px;
     //   display: flex;
     // align-items: center;
     // }
@@ -55,11 +54,11 @@
     }
   }
 }
-.logo{
-  font-size: 20px;
-  display: flex;
-align-items: center;
-}
+// .logo{
+//   font-size: 20px;
+//   display: flex;
+// align-items: center;
+// }
 // button menu
 .burger-menu {
   display: flex;
@@ -92,8 +91,11 @@ align-items: center;
 .logo {
   font-size: 30px;
   color: $color_base;
-  img{
-    width: 35px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 25px;
+    margin: 0 10px 0 0;
   }
 }
 .header__auth {
@@ -137,16 +139,16 @@ align-items: center;
     width: 37px;
   }
 }
-.right-menu-warpper{
+.right-menu-warpper {
   display: flex;
-  align-items:center;
+  align-items: center;
 }
-.search-link{
+.search-link {
   margin: 0px 0px 0px 10px;
   border-left: 1px solid $color_base;
   padding: 0px 0px 0px 10px;
 }
-.search-img{
+.search-img {
   width: 25px;
 }
 @media (max-width: $lg) {
@@ -180,7 +182,7 @@ align-items: center;
   .sing_up {
     display: none;
   }
-  .search-link{
+  .search-link {
     display: none;
   }
 }

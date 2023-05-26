@@ -163,7 +163,7 @@
 }
 @media (max-width: 380px) {
   .data-conteiner {
-    display: block;
+    flex-direction: column;
     margin: 5px 0px 15px 0px;
     text-align: center;
     .view-conteiner{

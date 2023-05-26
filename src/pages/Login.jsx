@@ -93,21 +93,12 @@ function Login() {
                   Зареєструватися
                 </Link>
               </div>
-              {/* <div className='selection-entrance__password'>
-                <Link
-                  to='/login/forgotpass'
-                  className='selection-entrance__subtext'
-                >
-                  Забули пароль?
-                </Link>
-              </div> */}
             </div>
           </div>
         </section>
       </div>
       <Routes>
         <Route path='/singup' element={<Singup />} />
-        {/* <Route path='/login/forgotpass' element={<ForgotPass />} /> */}
       </Routes>
     </>
   );
