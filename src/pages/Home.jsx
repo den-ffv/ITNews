@@ -58,7 +58,7 @@ function Home() {
                   idPost={obj._id}
                   title={obj.title}
                   text={obj.text}
-                  img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                  img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
                   tag={obj.tags}
                   postDate={obj.createdAt}
                   user={obj.user.fullName}
@@ -72,7 +72,7 @@ function Home() {
                   idPost={obj._id}
                   title={obj.title}
                   text={obj.text}
-                  img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                  img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
                   tag={obj.tags}
                   postDate={obj.createdAt}
                   user={obj.user.fullName}
@@ -88,7 +88,7 @@ function Home() {
                 idPost={obj._id}
                 title={obj.title}
                 // text={obj.text}
-                img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
                 tag={obj.tags}
                 views={obj.viewsCount}
                 // user={obj.user.fullName}
@@ -105,7 +105,7 @@ function Home() {
                 idPost={obj._id}
                 title={obj.title}
                 text={obj.text}
-                img={obj.imgeUrl ? `http://localhost:3001${obj.imgeUrl}` : ""}
+                img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
                 tag={obj.tags}
                 postDate={obj.createdAt}
               />

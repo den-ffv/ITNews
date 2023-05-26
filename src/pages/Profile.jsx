@@ -102,7 +102,7 @@ function Profile() {
                 idPost={post._id}
                 title={post.title}
                 text={post.text}
-                img={post.imgeUrl ? `http://localhost:3001${post.imgeUrl}` : ""}
+                img={post.imgeUrl ? `https://uncatch-api.onrender.com${post.imgeUrl}` : ""}
                 tag={post.tags}
                 postDate={post.createdAt}
                 deletePost={() => handleSavePost(post._id)}

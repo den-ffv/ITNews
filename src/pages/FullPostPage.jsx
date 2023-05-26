@@ -38,7 +38,7 @@ function FullPostPage() {
           index={data.index}
           title={data.title}
           text={<ReactMarkdown children={data.text}/>}
-          img ={data.imgeUrl ? `http://localhost:3001${data.imgeUrl}` : ""}
+          img ={data.imgeUrl ? `https://uncatch-api.onrender.com${data.imgeUrl}` : ""}
           views={data.viewsCount}
           tag={data.tags}
           postData={data.createdAt}

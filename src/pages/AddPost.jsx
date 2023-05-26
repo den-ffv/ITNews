@@ -123,7 +123,7 @@ function AddPost() {
             <button variant='contained' color='error' onClick={onClickRemoveImage} >
               Удалить
             </button>
-            <img className="add-img-post" src={`http://localhost:3001${imgeUrl}`} alt='Uploaded'/>
+            <img className="add-img-post" src={`https://uncatch-api.onrender.com${imgeUrl}`} alt='Uploaded'/>
           </>
         )}
      
