@@ -15,8 +15,11 @@
   &__content {
   }
   &__img {
-    width: 100%;
-    margin: 0px 0px 30px 0px;
+    // width: 100%;
+    max-width: 780px;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 30px auto;
   }
   &__title {
     font-size: 50px;
@@ -73,9 +76,9 @@
       width: 100%;
     }
     pre {
-      background: #f4f1f1;
-      border: 1px solid #d2d2d2;
-      border-radius: 3px;
+      background: #F9FAFB;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
       line-height: 160%;
       display: block;
       margin: 10px 0px 10px 0px;
@@ -84,7 +87,7 @@
       overflow-x: scroll;
     }
     code {
-      background: #eff1f3cc;
+      background: #F9FAFB;
       padding: 5px 5px;
       margin: 10px 0px 0px 0px;
       font-family: $ff_base;

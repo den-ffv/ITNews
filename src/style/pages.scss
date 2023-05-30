@@ -136,3 +136,18 @@
     margin: 10px 0;
   }
 }
+.read-more {
+  padding: 30px 0px 150px 0px;
+  &__title{
+    text-align: center;
+    font-size: $fz_bg-titel;
+    
+    // font-family: $ff_titel;
+    margin: 20px 0px
+  }
+  &__conteiner {
+    display: flex;
+    justify-content: center;
+  }
+}
+

@@ -25,7 +25,7 @@ function Home() {
     dispatch(fetchTags());
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,87 +47,107 @@ function Home() {
   }
   return (
     <>
-      <div className='home__wrapper wrapper'>
-        <div className="cards-new-and-populer-wrappper">
-          <div className='cards-new'>
-            <p className='cards-header-text'>нові</p>
-            <div className='carts'>
-              {posts.items.slice(1, 3).map((obj) => (
-                <MiniPost
+      {isLoading ? (
+        <PreLoader />
+      ) : (
+        <div className='home__wrapper wrapper'>
+          <div className='cards-new-and-populer-wrappper'>
+            <div className='cards-new'>
+              <p className='cards-header-text'>нові</p>
+              <div className='carts'>
+                {posts.items.slice(1, 3).map((obj) => (
+                  <MiniPost
+                    key={obj._id}
+                    idPost={obj._id}
+                    title={obj.title}
+                    text={obj.text}
+                    img={
+                      obj.imgeUrl
+                        ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                        : ""
+                    }
+                    tag={obj.tags}
+                    postDate={obj.createdAt}
+                    user={obj.user.fullName}
+                  />
+                ))}
+              </div>
+              <div className='carts'>
+                {posts.items.slice(0, 1).map((obj) => (
+                  <BigPost
+                    key={obj._id}
+                    idPost={obj._id}
+                    title={obj.title}
+                    text={obj.text}
+                    img={
+                      obj.imgeUrl
+                        ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                        : ""
+                    }
+                    tag={obj.tags}
+                    postDate={obj.createdAt}
+                    user={obj.user.fullName}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className='carts cards-popular'>
+              <p className='cards-header-text'>популярна</p>
+              {popularPosts.slice(0, 4).map((obj) => (
+                <PopularPost
+                  key={obj._id}
+                  idPost={obj._id}
+                  title={obj.title}
+                  // text={obj.text}
+                  img={
+                    obj.imgeUrl
+                      ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                      : ""
+                  }
+                  tag={obj.tags}
+                  views={obj.viewsCount}
+                  // user={obj.user.fullName}
+                />
+              ))}
+            </div>
+          </div>
+          <div className='cards__wrapper cards-all__wrapper'>
+            <div className='cards-all'>
+              <p className='cards-header-text'>всі публікації</p>
+              {currentPosts.slice(3).map((obj, index) => (
+                <Post
                   key={obj._id}
                   idPost={obj._id}
                   title={obj.title}
                   text={obj.text}
-                  img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
+                  img={
+                    obj.imgeUrl
+                      ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                      : ""
+                  }
                   tag={obj.tags}
                   postDate={obj.createdAt}
-                  user={obj.user.fullName}
                 />
               ))}
             </div>
-            <div className='carts'>
-              {posts.items.slice(0, 1).map((obj) => (
-                <BigPost
-                  key={obj._id}
-                  idPost={obj._id}
-                  title={obj.title}
-                  text={obj.text}
-                  img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-                  tag={obj.tags}
-                  postDate={obj.createdAt}
-                  user={obj.user.fullName}
-                />
-              ))}
+            <div className='tags-conteiner'>
+              <h2>Теги</h2>
+              <ul>
+                {uniqueTags.map((tag) => (
+                  <li key={tag}>
+                    <Link to={`/category/${tag}`}>{tag}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className='carts cards-popular'>
-            <p className='cards-header-text'>популярна</p>
-            {popularPosts.slice(0, 4).map((obj) => (
-              <PopularPost
-                key={obj._id}
-                idPost={obj._id}
-                title={obj.title}
-                // text={obj.text}
-                img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-                tag={obj.tags}
-                views={obj.viewsCount}
-                // user={obj.user.fullName}
-              />
-            ))}
-          </div>
+          {currentPosts.length < posts.items.length && (
+            <div className='load-more-button'>
+              <button onClick={handleLoadMore}>Дивитись більше</button>
+            </div>
+          )}
         </div>
-        <div className='cards__wrapper cards-all__wrapper'>
-          <div className='cards-all'>
-            <p className='cards-header-text'>всі публікації</p>
-            {currentPosts.slice(3).map((obj, index) => (
-              <Post
-                key={obj._id}
-                idPost={obj._id}
-                title={obj.title}
-                text={obj.text}
-                img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-                tag={obj.tags}
-                postDate={obj.createdAt}
-              />
-            ))}
-          </div>
-          <div className='tags-conteiner'>
-            <h2>Теги</h2>
-            <ul>
-              {uniqueTags.map((tag) => (
-                <li key={tag}>
-                  <Link to={`/category/${tag}`}>{tag}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        {currentPosts.length < posts.items.length && (
-          <div className='load-more-button'>
-            <button onClick={handleLoadMore}>Дивитись більше</button>
-          </div>
-        )}
-      </div>
+      )}
     </>
   );
 }

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+
 import axios from "../axios";
-import { fetchAuthMe } from "../redux/slices/auth";
+import { fetchAuthMe, selectIsAuth } from "../redux/slices/auth";
 import { fetchRemovePost } from "../redux/slices/posts";
 import { getUserDate } from "../utils/createDate";
 import { minutReadFullPost } from "../utils/minutRead";
@@ -18,19 +20,7 @@ import linkedin from "../img/linkedin.svg";
 import saveOn from "../img/save-on.png";
 import saveOff from "../img/save-off.png";
 import "./FullPost.scss";
-// import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-function FullPost({
-  title,
-  text,
-  img,
-  tag,
-  postData,
-  userName,
-  idPost,
-  views,
-}) {
+function FullPost({ title, text, img, tag, postData, userName, idPost, views}) {
   const navigate = useNavigate();
   const disparch = useDispatch();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
@@ -45,34 +35,6 @@ function FullPost({
     navigate(`/add-post/${idPost}/edit`);
   };
 
-  // const [isSaved, setIsSaved] = useState(false);
-
-  // useEffect(() => {
-  //   checkPostSavedStatus();
-  // }, [idPost]);
-
-  // const checkPostSavedStatus = async () => {
-  //   try {
-  //     const response = await axios.get(`/saved-post`);
-  //     setIsSaved(response.data.saved);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const handleSavePost = async () => {
-  //   try {
-  //     if (isSaved) {
-  //       await axios.delete(`/posts/${idPost}/remove`);
-  //       setIsSaved(false);
-  //     } else {
-  //       await axios.post(`/posts/${idPost}/save`);
-  //       setIsSaved(true);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const [isSaved, setIsSaved] = useState(false);
 
@@ -91,14 +53,19 @@ function FullPost({
 
   const handleSavePost = async () => {
     try {
-      if (isSaved) {
-        await axios.delete(`/posts/${idPost}/remove`);
-        removePostFromLocalStorage(idPost);
-        setIsSaved(false);
+      if (window.localStorage.getItem('token') && user) {
+        if (isSaved) {
+          await axios.delete(`/posts/${idPost}/remove`);
+          removePostFromLocalStorage(idPost);
+          setIsSaved(false);
+        } else {
+          await axios.post(`/posts/${idPost}/save`);
+          savePostToLocalStorage(idPost);
+          setIsSaved(true);
+        }
       } else {
-        await axios.post(`/posts/${idPost}/save`);
-        savePostToLocalStorage(idPost);
-        setIsSaved(true);
+        const history = useNavigate();
+        history('/login');
       }
     } catch (error) {
       console.log(error);
@@ -120,46 +87,45 @@ function FullPost({
   return (
     <>
       <div className='full-post__wrapper'>
-        <Link  to={`/category/${tag}`} className='full-post__tags'>
-          {tag}
-        </Link>
-        <h1 className='full-post__title title'>{title}</h1>
-        {!img ? "" : <img className='full-post__img' src={img} alt='img' />}
+          <Link to={`/category/${tag}`} className='full-post__tags'>
+            {tag}
+          </Link>
+          <h1 className='full-post__title title'>{title}</h1>
+          {!img ? "" : <img className='full-post__img' src={img} alt='img' />}
         <div className='text-conteiner'>
-          <div >
+          <div>
             <div className='data-conteiner'>
               <p className='mini-text'>{getUserDate(postData)}</p>
               <p className='mini-text'>{minutReadFullPost(text)}</p>
-              <div className="view-conteiner">
-              <img className='img-view' src={view} alt='view' />
-              <p className='mini-text'>{views}</p>
+              <div className='view-conteiner'>
+                <img className='img-view' src={view} alt='view' />
+                <p className='mini-text'>{views}</p>
               </div>
             </div>
 
             <div className='share-content'>
-            <button className='likn-social-maras' onClick={handleSavePost}>
+              <button className='likn-social-maras' onClick={handleSavePost}>
                 {isSaved ? (
-                  <img  src={saveOn} alt='cancel' />
+                  <img src={saveOn} alt='cancel' />
                 ) : (
-                  <img  src={saveOff} alt='save' />
+                  <img src={saveOff} alt='save' />
                 )}
               </button>
               <div className='likn-social-maras'>
-              <FacebookShareButton  url={img} quote={title}>
-                <img src={facebook} alt="facebook" />
-              </FacebookShareButton>
+                <FacebookShareButton url={'https://uncatch.vercel.app'} title={title}>
+                  <img src={facebook} alt='facebook' />
+                </FacebookShareButton>
               </div>
-              <div  className='likn-social-maras'>
-                <TwitterShareButton url={img} title={title}>
-                  <img  src={twitter} alt='twitter' />
+              <div className='likn-social-maras'>
+                <TwitterShareButton url={`https://uncatch.vercel.app`} title={title}>
+                  <img src={twitter} alt='twitter' />
                 </TwitterShareButton>
               </div>
               <div className='likn-social-maras'>
-                <LinkedinShareButton url={img} title={title}>
-                  <img  src={linkedin} alt='linkedin' />
+                <LinkedinShareButton url={'https://uncatch.vercel.app'} title={title}>
+                  <img src={linkedin} alt='linkedin' />
                 </LinkedinShareButton>
               </div>
-           
             </div>
           </div>
           <div className='full-post__text'>{text}</div>
