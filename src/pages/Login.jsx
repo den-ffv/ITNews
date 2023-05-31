@@ -19,7 +19,7 @@ function Login() {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      email: "bo15fff@gmail.com",
+      email: "seimon@email.com",
       password: "123456789",
     },
     mode: "onChange",

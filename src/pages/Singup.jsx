@@ -11,9 +11,9 @@ function Singup() {
   const dispatch = useDispatch();
   const { register, handleSubmit, setError, formState: { errors, isValid },} = useForm({
     defaultValues: {
-      fullName: "Seimon",
-      email: "seimon@email.com",
-      password: "123456789",
+      fullName: "",
+      email: "",
+      password: "",
     },
     mode: "onChange",
   });
