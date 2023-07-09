@@ -17,6 +17,9 @@ function Singup() {
     },
     mode: "onChange",
   });
+  React.useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
   if (isAuth) {
     return (
       <>

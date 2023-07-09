@@ -23,9 +23,12 @@ function Home() {
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchTags());
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+
+    if (posts) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);

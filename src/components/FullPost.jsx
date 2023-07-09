@@ -22,6 +22,7 @@ import saveOff from "../img/save-off.png";
 import "./FullPost.scss";
 function FullPost({ title, text, img, tag, postData, userName, idPost, views}) {
   const navigate = useNavigate();
+  const history = useNavigate();
   const disparch = useDispatch();
   const user = useSelector((fetchAuthMe) => fetchAuthMe.auth.data);
   const isAdmin = user && user.role === "admin";
@@ -64,7 +65,7 @@ function FullPost({ title, text, img, tag, postData, userName, idPost, views}) {
           setIsSaved(true);
         }
       } else {
-        const history = useNavigate();
+        // const history = useNavigate();
         history('/login');
       }
     } catch (error) {

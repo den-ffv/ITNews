@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Singup from "./Singup";
 // import ForgotPass from "./ForgotPass";
 import "../style/auth.scss";
@@ -24,7 +24,9 @@ function Login() {
     },
     mode: "onChange",
   });
-
+  React.useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values));
     if (!data.payload) {
@@ -97,9 +99,6 @@ function Login() {
           </div>
         </section>
       </div>
-      <Routes>
-        <Route path='/singup' element={<Singup />} />
-      </Routes>
     </>
   );
 }

@@ -32,7 +32,8 @@ function FullPostPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+      window.scrollTo({ top: 0 });
+    }, [id]);
 
   const getRelatedPosts = (posts, tag, count) => {
     const relatedPosts = posts.filter((post) => post.tags.includes(tag));
