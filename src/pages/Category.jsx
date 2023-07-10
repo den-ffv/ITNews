@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PreLoader from "../components/PreLoader";
 import Post from "../components/Post";
 import BigPost from "../components/BigPost";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
 import { useParams } from "react-router-dom";
 import MiniPost from "../components/MiniPost";
+import Loading from "../components/Loading";
 
 function Category() {
   const dispatch = useDispatch();
@@ -35,61 +35,77 @@ function Category() {
     }, 2000);
   }, [dispatch, tag]);
 
-  if (isLoading) {
-    return <PreLoader />;
-  }
+  
   return (
-    <div className='wrapper'>
-      <h1 className='main-title'>{tag}</h1>
-      <div className='cards-new'>
-        <div className='carts'>
-          {currentPosts.slice(0, 1).map((obj) => (
-            <BigPost
-              key={obj._id}
-              idPost={obj._id}
-              title={obj.title}
-              text={obj.text}
-              img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-              tag={obj.tags}
-              postDate={obj.createdAt}
-              user={obj.user.fullName}
-            />
-          ))}
-        </div>
-        <div className='carts'>
-          {currentPosts.slice(1, 4).map((obj) => (
-            <Post
-              key={obj._id}
-              idPost={obj._id}
-              title={obj.title}
-              text={obj.text}
-              img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-              tag={obj.tags}
-              postDate={obj.createdAt}
-              user={obj.user.fullName}
-            />
-          ))}
-        </div>
-      </div>
-      <div className='carts'>
-        {currentPosts.slice(4).map((obj, index) => (
-          <Post
-            key={obj._id}
-            idPost={obj._id}
-            title={obj.title}
-            text={obj.text}
-            img={obj.imgeUrl ? `https://uncatch-api.onrender.com${obj.imgeUrl}` : ""}
-            tag={obj.tags}
-            postDate={obj.createdAt}
-          />
-        ))}
-        {showLoadMoreButton && (
-          <div className='load-more-button'>
-            <button onClick={handleLoadMore}>Дивитись більше</button>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className='wrapper'>
+          <h1 className='main-title'>{tag}</h1>
+          <div className='cards-categoria'>
+            <div className='carts'>
+              {currentPosts.slice(0, 1).map((obj) => (
+                <BigPost
+                  key={obj._id}
+                  idPost={obj._id}
+                  title={obj.title}
+                  text={obj.text}
+                  img={
+                    obj.imgeUrl
+                      ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                      : ""
+                  }
+                  tag={obj.tags}
+                  postDate={obj.createdAt}
+                  user={obj.user.fullName}
+                />
+              ))}
+            </div>
+            <div className='carts'>
+              {currentPosts.slice(1, 4).map((obj) => (
+                <Post
+                  key={obj._id}
+                  idPost={obj._id}
+                  title={obj.title}
+                  text={obj.text}
+                  img={
+                    obj.imgeUrl
+                      ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                      : ""
+                  }
+                  tag={obj.tags}
+                  postDate={obj.createdAt}
+                  user={obj.user.fullName}
+                />
+              ))}
+            </div>
           </div>
-        )}
-      </div>
-    </div>
+          <div className='carts'>
+            {currentPosts.slice(4).map((obj, index) => (
+              <Post
+                key={obj._id}
+                idPost={obj._id}
+                title={obj.title}
+                text={obj.text}
+                img={
+                  obj.imgeUrl
+                    ? `https://uncatch-api.onrender.com${obj.imgeUrl}`
+                    : ""
+                }
+                tag={obj.tags}
+                postDate={obj.createdAt}
+              />
+            ))}
+            {showLoadMoreButton && (
+              <div className='load-more-button'>
+                <button onClick={handleLoadMore}>Дивитись більше</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

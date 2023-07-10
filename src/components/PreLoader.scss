@@ -14,13 +14,12 @@
     max-width: 570px;
     color: $color_base;
     font-size: 80px;
-    overflow: hidden; /* Ховаємо вміст, щоб він не відображався одразу */
-    border-right: 0.35em solid rgb(0, 0, 0); /* Лінія для імітації курсора */
-    white-space: nowrap; /* Забороняємо перенос рядків */
-    margin: 0 auto; /* Вирівнюємо текст по центру */
-    letter-spacing: 0.15em; /* Роздільний проміжок між символами */
+    overflow: hidden;
+    border-right: 0.35em solid rgb(0, 0, 0);
+    white-space: nowrap; 
+    margin: 0 auto;
+    letter-spacing: 0.15em; 
     animation: typing 2s steps(30, end), blink-caret 1s step-end infinite;
-    /* Анімація для друку тексту і імітації курсора */
     @media(max-width: $md){
       max-width: 300px;
       font-size: 45px;
@@ -31,7 +30,6 @@
     }
   }
 
-  /* Анімація для друку тексту */
 }
 
 @keyframes typing {
@@ -42,8 +40,6 @@
     width: 100%;
   }
 }
-
-/* Анімація для імітації курсора */
 @keyframes blink-caret {
   from,
   to {

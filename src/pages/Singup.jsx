@@ -4,7 +4,7 @@ import { selectIsAuth, fetchRegister } from "../redux/slices/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import PreLoader from "../components/PreLoader";
+import Loading from "../components/Loading";
 
 function Singup() {
   const isAuth = useSelector(selectIsAuth);
@@ -23,7 +23,7 @@ function Singup() {
   if (isAuth) {
     return (
       <>
-        <PreLoader />
+        <Loading />
         <Navigate to='/' />
       </>
     );

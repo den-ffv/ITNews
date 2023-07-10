@@ -8,7 +8,6 @@ import axios from "../axios";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import NotFoundPage from './NotFoundPage';
-import PreLoader from '../components/PreLoader';
 
 function AddPost() {
   const isAuth = useSelector(selectIsAuth);

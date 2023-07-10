@@ -6,10 +6,10 @@ import { logout, selectIsAuth } from "../redux/slices/auth";
 import { fetchAuthMe } from "../redux/slices/auth";
 import { getSavedPosts } from "../redux/slices/posts";
 import { useNavigate, Link } from "react-router-dom";
-import PreLoader from "../components/PreLoader";
 import SavePost from "../components/SavePost";
 import axios from "../axios";
 import { updateSavedPosts } from "../redux/slices/posts";
+import Loading from "../components/Loading";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ function Profile() {
   return (
     <>
       {window.localStorage.getItem("token") && isLoading ? (
-        <PreLoader />
+        <Loading />
       ) : (
         <div className='profile'>
           <div className='profile__warpper'>

@@ -9,6 +9,7 @@ import PreLoader from "../components/PreLoader";
 import Post from "../components/Post";
 import BigPost from "../components/BigPost";
 import PopularPost from "../components/PopularPost";
+import Loading from "../components/Loading";
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function Home() {
     if (posts) {
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 1000)
     }
   }, []);
 
@@ -45,9 +46,6 @@ function Home() {
     setCurrentPage(pageNumber);
   };
 
-  if (isLoading) {
-    return <PreLoader />;
-  }
   return (
     <>
       {isLoading ? (

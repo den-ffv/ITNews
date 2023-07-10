@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios";
 import "../style/FullPostPage.scss";
 import FullPost from "../components/FullPost";
-import PreLoader from "../components/PreLoader";
 import ReactMarkdown from "react-markdown";
 import { fetchPosts } from "../redux/slices/posts";
 import MiniPost from "../components/MiniPost";
+import Loading from "../components/Loading";
 
 function FullPostPage() {
   const { id } = useParams();
@@ -32,8 +32,8 @@ function FullPostPage() {
       .catch((err) => {
         console.log(err);
       });
-      window.scrollTo({ top: 0 });
-    }, [id]);
+    window.scrollTo({ top: 0 });
+  }, [id]);
 
   const getRelatedPosts = (posts, tag, count) => {
     const relatedPosts = posts.filter((post) => post.tags.includes(tag));
@@ -46,7 +46,7 @@ function FullPostPage() {
   return (
     <>
       {isLoading ? (
-        <PreLoader />
+        <Loading />
       ) : (
         <div className=''>
           <FullPost

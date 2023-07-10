@@ -5,7 +5,7 @@ import search from "../img/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, fetchTags } from "../redux/slices/posts";
 import Post from "../components/Post";
-import PreLoader from "../components/PreLoader";
+import Loading from '../components/Loading';
 
 function Search() {
   const dispatch = useDispatch();
@@ -37,7 +37,6 @@ function Search() {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  //--------------
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -51,7 +50,7 @@ function Search() {
   });
 
   if (isLoading) {
-    return <PreLoader />;
+    return <Loading />;
   }
   return (
     <div className='wrapper'>
