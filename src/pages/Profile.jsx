@@ -28,7 +28,7 @@ function Profile() {
   }, [dispatch]);
 
   const onClickLogout = () => {
-    if (window.confirm("Ви справді хочете вийти?")) {
+    if (window.confirm("Do you really want to leave?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
       histori("/");
@@ -68,10 +68,10 @@ function Profile() {
         <div className='profile'>
           <div className='profile__warpper'>
             <div className='wrapper profile__header'>
-              <h1 className='profile__title'>Мiй Аккаунт</h1>
-              <p>Ви ввійшли як {user.email}</p>
+              <h1 className='profile__title'>My Account</h1>
+              <p>You are logged in as {user.email}</p>
               <button onClick={onClickLogout} className='exid-btn'>
-                Вихiд
+                Exit
               </button>
               {isAdmin ? <Link to={"/add-post"}>add post</Link> : ""}
             </div>
@@ -84,14 +84,12 @@ function Profile() {
             </div>
           </div>
           <div className='wrapper wrapper-save-pages-content'>
-            {/* тут будуть пости цього автора або вподобані пости */}
             <h2 className='wrapper-save-pages-content__title'>
-              Усі Збережені Історії
+              All Saved Stories
             </h2>
-            {/* Відображення збережених постів */}
 
             {savedPosts.length === 0 ? (
-              <p>Останнім часом ви не зберігали жодної історії.</p>
+              <p>You haven't saved any stories lately.</p>
             ) : (
               savedPosts.map((post) => (
                 <SavePost

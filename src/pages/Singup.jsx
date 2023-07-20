@@ -9,7 +9,12 @@ import Loading from "../components/Loading";
 function Singup() {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
-  const { register, handleSubmit, setError, formState: { errors, isValid },} = useForm({
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isValid },
+  } = useForm({
     defaultValues: {
       fullName: "",
       email: "",
@@ -32,7 +37,7 @@ function Singup() {
   const onSubmit = async (values) => {
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {
-      return alert("не вдалось зареєструватися");
+      return alert("failed to register");
     }
 
     if ("token" in data.payload) {
@@ -47,9 +52,7 @@ function Singup() {
           <div className='autorization-continer container'>
             <div className='autorization-stylization-circles-two'></div>
             <div className='autorization-block'>
-              <div className='autorization-block__title'>
-                Створіть обліковий запис
-              </div>
+              <div className='autorization-block__title'>Create an account</div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='autorization-box'>
                   <input
@@ -58,8 +61,8 @@ function Singup() {
                     name='fname'
                     className='autorization__box-input'
                     required
-                    placeholder="Ім'я"
-                    {...register("fullName", { required: "Укажіть і'мя" })}
+                    placeholder='Name'
+                    {...register("fullName", { required: "Enter your name" })}
                   />
                   <span className='autorization__box-text'></span>
                   <div className='error-message'>
@@ -73,9 +76,9 @@ function Singup() {
                     name='email'
                     className='autorization__box-input'
                     required
-                    placeholder='Почта'
+                    placeholder='Email'
                     pattern='[^\s@]+@[^\s@]+\.[^\s@]+'
-                    {...register("email", { required: "Укажіть пошту" })}
+                    {...register("email", { required: "Enter your email" })}
                   />
                   <span className='autorization__box-text'></span>
                   <div className='error-message'>{errors.email?.message}</div>
@@ -87,8 +90,10 @@ function Singup() {
                     name='password'
                     className='autorization__box-input'
                     required
-                    placeholder='Пароль'
-                    {...register("password", { required: "Укажіть пароль" })}
+                    placeholder='Password'
+                    {...register("password", {
+                      required: "Enter your password",
+                    })}
                   />
                   <span className='autorization__box-text'></span>
                   <div className='error-message'>
@@ -96,23 +101,9 @@ function Singup() {
                   </div>
                 </div>
                 <button className='button-autorization button-autorization__margin'>
-                  увійти
+                  log in
                 </button>
               </form>
-              {/* <div className='selection-entrance'>
-                <p className='selection-entrance__text selection-entrance__text-grey'>
-                  Відправляючи форму, ви погоджуєтеся з тим, що
-                  <a href='#' className='selection-entrance__subtext'>
-                    {" "}
-                    Умови використання{" ,"}
-                  </a>
-                  <a href='#' className='selection-entrance__subtext'>
-                    {" "}
-                    Політика конфіденційності
-                  </a>
-                </p>
-              </div>
-              <div className='selection-entrance__password'></div> */}
             </div>
           </div>
         </section>

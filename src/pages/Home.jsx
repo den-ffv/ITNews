@@ -54,7 +54,7 @@ function Home() {
         <div className='home__wrapper wrapper'>
           <div className='cards-new-and-populer-wrappper'>
             <div className='cards-new'>
-              <p className='cards-header-text'>нові</p>
+              <p className='cards-header-text'>new</p>
               <div className='carts'>
                 {posts.items.slice(1, 3).map((obj) => (
                   <MiniPost
@@ -93,7 +93,7 @@ function Home() {
               </div>
             </div>
             <div className='carts cards-popular'>
-              <p className='cards-header-text'>популярна</p>
+              <p className='cards-header-text'>popular</p>
               {popularPosts.slice(0, 4).map((obj) => (
                 <PopularPost
                   key={obj._id}
@@ -114,7 +114,7 @@ function Home() {
           </div>
           <div className='cards__wrapper cards-all__wrapper'>
             <div className='cards-all'>
-              <p className='cards-header-text'>всі публікації</p>
+              <p className='cards-header-text'>all publications</p>
               {currentPosts.slice(3).map((obj, index) => (
                 <Post
                   key={obj._id}
@@ -132,7 +132,7 @@ function Home() {
               ))}
             </div>
             <div className='tags-conteiner'>
-              <h2>Теги</h2>
+              <h2>Tags</h2>
               <ul>
                 {uniqueTags.map((tag) => (
                   <li key={tag}>
@@ -144,7 +144,7 @@ function Home() {
           </div>
           {currentPosts.length < posts.items.length && (
             <div className='load-more-button'>
-              <button onClick={handleLoadMore}>Дивитись більше</button>
+              <button onClick={handleLoadMore}>See more</button>
             </div>
           )}
         </div>

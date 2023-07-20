@@ -2,6 +2,10 @@
     padding: 0;
     margin: 0;
     border: 0;
+    &::selection {
+      background: #8d8d8d6c;
+      }
+    cursor: url("/cursor.svg")2 2, default;
   }
   
   *,*:before,*:after {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, NavLink } from "react-router-dom";
 import "./Header.scss";
 import Menu from "./Menu";
 import profile from "../img/profile.png";
@@ -12,21 +12,14 @@ import logo from "../img/logo.svg";
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const items = [
-    { value: "Головна", href: "/" },
-    { value: "Новини", href: "/category/news" },
-    { value: "Ідеї", href: "/category/ideas" },
-    { value: "Наука", href: "/category/science" },
-    { value: "Пошук", href: "/search" },
+    { value: "Home", href: "/" },
+    { value: "News", href: "/category/news" },
+    { value: "Ideas", href: "/category/ideas" },
+    { value: "Science", href: "/category/science" },
+    { value: "Search", href: "/search" },
   ];
 
   const isAuth = useSelector(selectIsAuth);
-  // const dispatch = useDispatch()
-  // const onClickLogout = () => {
-  //   if (window.confirm('Ви справді хочете вийти?')) {
-  //     dispatch(logout())
-  //     window.localStorage.removeItem("token")
-  //   }
-  // }
 
   return (
     <>
@@ -65,9 +58,9 @@ function Header() {
               <ul className='header__ul'>
                 {items.slice(0, 4).map((item, index) => (
                   <li key={index}>
-                    <Link className='header__link' to={item.href}>
+                    <NavLink className='header__link' to={item.href}>
                       {item.value}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
@@ -79,10 +72,10 @@ function Header() {
                   onClick={() => setMenuActive(false)}
                 >
                   <Link className='login auth' to='/login'>
-                    Увійти
+                    Sign in
                   </Link>
                   <Link className='sing_up auth button' to='/singup'>
-                    Реєстрація
+                    Registration
                   </Link>
                 </div>
               ) : (

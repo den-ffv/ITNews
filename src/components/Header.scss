@@ -31,15 +31,16 @@
     transition: $tr_secont;
     padding: 10px 0;
     position: relative;
-    margin: 0px 20px 0px 20px;
+    padding: 10px 20px;
+    margin: 0px 10px 0px 10px;
     &::before {
       content: "";
       position: absolute;
       display: block;
-      width: 100%;
+      width: 60%;
       height: 2px;
-      bottom: 5px;
-      left: 0;
+      bottom: 9px;
+      left: 18px;
       background: $color_activ;
       transform-origin: left;
       transform: scaleX(0);
@@ -52,6 +53,9 @@
     &:hover {
       color: $color_activ;
     }
+  }
+  .active{
+    color: $color_activ;
   }
 }
 // .logo{

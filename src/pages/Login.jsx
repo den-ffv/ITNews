@@ -30,7 +30,7 @@ function Login() {
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values));
     if (!data.payload) {
-      return alert("не вдалось авторизуватися");
+      return alert("failed to log in");
     }
 
     if ("token" in data.payload) {
@@ -53,7 +53,7 @@ function Login() {
           <div className='autorization-continer container'>
             <div className='autorization-stylization-circles'></div>
             <div className='autorization-block'>
-              <div className='autorization-block__title'>Ласкаво просимо</div>
+              <div className='autorization-block__title'>Welcome</div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='autorization-box'>
                   <input
@@ -61,9 +61,8 @@ function Login() {
                     id='login'
                     name='login'
                     className='autorization__box-input'
-                    // required
-                    placeholder='Логин'
-                    {...register("email", { required: "Укажіть пошту" })}
+                    placeholder='Login'
+                    {...register("email", { required: "Enter your email" })}
                   />
                   <div className='error-message'>
                     <p>{errors.email?.message}</p>
@@ -76,23 +75,25 @@ function Login() {
                     name='password'
                     className='autorization__box-input'
                     // required
-                    placeholder='Пароль'
-                    {...register("password", { required: "Укажіть пароль" })}
+                    placeholder='Password'
+                    {...register("password", {
+                      required: "Enter your password",
+                    })}
                   />
                   <div className='error-message'>
                     <p>{errors.password?.message}</p>
                   </div>
                 </div>
                 <button className='button-autorization button-autorization__margin'>
-                  увійти
+                  log in
                 </button>
               </form>
               <div className='selection-entrance'>
                 <p className='selection-entrance__text'>
-                  Не маю облікового запису
+                  I do not have an account
                 </p>
                 <Link to='/singup' className='selection-entrance__subtext'>
-                  Зареєструватися
+                Register
                 </Link>
               </div>
             </div>

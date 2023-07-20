@@ -2,18 +2,18 @@ function addZeroInDate(date) {
   return date < 10 ? (date = "0" + date) : date;
 }
 const months = [
-  "Січень",
-  "Лютий",
-  "Березень",
-  "Квітень",
-  "Травень",
-  "Червень",
-  "Липень",
-  "Серпень",
-  "Вересень",
-  "Жовтень",
-  "Листопад",
-  "Грудень",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 export function getUserDate(t) {
@@ -21,6 +21,5 @@ export function getUserDate(t) {
   const month = months[postDate.getMonth()];
   const day = addZeroInDate(postDate.getDate());
   const formattedDate = `${day} ${month}, ${postDate.getFullYear()}`;
-  // console.log(formattedDate); // "Березень 31, 2023"
   return formattedDate;
 }

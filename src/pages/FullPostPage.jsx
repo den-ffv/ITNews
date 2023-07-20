@@ -66,7 +66,7 @@ function FullPostPage() {
           />
           {!relatedPosts.leangth ? (
             <div className='read-more wrapper'>
-              <h2 className='read-more__title'>Читати більше</h2>
+              <h2 className='read-more__title'>Read more</h2>
               <div className='read-more__conteiner'>
                 {relatedPosts.map((post) => (
                   <MiniPost

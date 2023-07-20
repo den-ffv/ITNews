@@ -102,8 +102,6 @@ function AddPost() {
       })
     }
   }, [id ,isEditing])
-  console.log(isAdmin)
-  console.log(!window.localStorage.getItem("token"))
   if (window.localStorage.getItem("token") && isAdmin === false) {
     return navigate("/")
   }
