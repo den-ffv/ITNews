@@ -33,7 +33,7 @@ function Home() {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(5);
   const handleLoadMore = () => {
     setPostsPerPage(postsPerPage + 6);
   };
